@@ -1,40 +1,39 @@
 #!/bin/sh
-function file_exist_replace()
-{
-    echo "$1 already exist! replace?[y/n]"
-    return
-}
-
-if [ `dirname $0` != '.' ]
-then
-	echo "please cd the dir of init.sh"
-	exit;
-fi
-
+LANGUAGE='utf-8'
 this_file=`pwd`"/"$0
 project_home=`dirname $this_file`
 home=`echo ~`
+. $project_home/utils.sh
 
 dirs="$home/backup $home/backup/vim"
 for dir in $dirs
 do
     if [ -a $dir ]
     then
-        file_exist_replace $dir
+        cecho "$dir already exist!" $yellow
     else
         mkdir $dir
     fi
 done
 
-#if [ -a ~/.vim ]
-#then
-#    echo "~/.vim already exist!"
-#else
-#    ln -s `pwd` ~/.vim
-#fi
+if ([ -L $home/.vim ]) || ([ -e $home/.vim ])
+then
+    confirm " ~/.vim already exist! replace?"
+    if [ $? == '1' ]
+    then
+        ln -sf $project_home/vim $home/.vim
+    else
+        cecho "do not create ~/.vim" $red
+    fi
+fi
 
-#if [ -a ~/.vimrc ]
-#then
-#    echo ""
-
-#ln -s ~/.vim/_vimrc ~/.vimrc
+if ([ -L $home/.vimrc ]) || ([ -e $home/.vimrc ])
+then
+    confirm " ~/.vimrc already exist! replace?"
+    if [ $? == '1' ]
+    then
+        ln -sf $project_home/vim/_vimrc $home/.vimrc
+    else
+        cecho "do not create ~/.vimrc" $red
+    fi
+fi
