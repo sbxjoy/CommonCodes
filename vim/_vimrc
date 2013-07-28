@@ -1,5 +1,5 @@
 set t_Co=256
-"colorscheme desert
+colorscheme molokai
 "语法高亮
 syntax on
 "智能缩进
@@ -43,7 +43,7 @@ set showmatch
 "显示行号
 set nu
 "设置背景为暗色
-set background=dark
+"set background=dark
 "如果找Cscope数据库失败时，不要报错
 set nocscopeverbose
 "自动折行
