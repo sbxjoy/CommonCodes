@@ -1,0 +1,6 @@
+if [ $# = 1 ]
+then
+    vim +"Project $1"
+else
+    vim +"Project .prjide"
+fi
