@@ -5,7 +5,7 @@ project_home=`dirname $this_file`
 home=`echo ~`
 . $project_home/utils.sh
 
-dirs="$home/backup $home/backup/vim"
+dirs="$home/backup $home/backup/vim $home/bin"
 for dir in $dirs
 do
     if [ -a $dir ]
