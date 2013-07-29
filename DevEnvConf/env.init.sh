@@ -21,7 +21,7 @@ then
     confirm " ~/.vim already exist! replace?"
     if [ $? == '1' ]
     then
-        ln -sf $project_home/vim $home/.vim
+        ln -sfn $project_home/vim $home/.vim
     else
         cecho "do not create ~/.vim" $red
     fi
@@ -32,7 +32,7 @@ then
     confirm " ~/.vimrc already exist! replace?"
     if [ $? == '1' ]
     then
-        ln -sf $project_home/vim/_vimrc $home/.vimrc
+        ln -sfn $project_home/vim/_vimrc $home/.vimrc
     else
         cecho "do not create ~/.vimrc" $red
     fi
