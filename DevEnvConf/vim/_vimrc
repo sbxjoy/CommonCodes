@@ -1,3 +1,4 @@
+set hlsearch
 set t_Co=256
 colorscheme molokai
 "语法高亮
@@ -50,6 +51,9 @@ set nocscopeverbose
 set wrap
 "帮助文档语言
 set helplang=cn
+"superTab 自动补全
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-N>"
 
 "选择快捷键组
 map vi' <Esc>?'<CR>lv/'<CR>h
@@ -90,6 +94,8 @@ function! PhpKeys()
     map <leader>wm :vertical res -40<CR>
     "php文件的缩进
     "let php_folding = 1
+    set dictionary+=~/.vim/doc/funclist.txt
+    set complete+=k
 endfunction
 
 noremap \dc <Esc>:Dox<CR>
@@ -106,16 +112,3 @@ if v:version >= 700
 endif
 
 nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
-" ============= PHP FUNCTION BEGIN ========== 
-set dictionary-=~/.vim/doc/funclist.txt dictionary+=~/.vim/doc/funclist.txt
-set complete-=k complete+=k
-function! InsertTabWrapper()
-    let col=col('.')-1
-    if !col || getline('.')[col-1] !~ '\k'
-        return "\<TAB>"
-    else
-        return "\<C-N>"
-    endif
-endfunction
-inoremap <TAB> <C-R>=InsertTabWrapper()<CR>
-" ============= PHP FUNCTION END ========== 
