@@ -86,15 +86,9 @@ set csto=0
 autocmd FileType php :call PhpKeys()
 
 function! PhpKeys()
-    "调整窗口高度
-    map <leader>hl :res +40<CR>
-    map <leader>hm :res -40<CR>
-    "调整窗口宽度
-    map <leader>wl :vertical res +40<CR>
-    map <leader>wm :vertical res -40<CR>
     "php文件的缩进
     "let php_folding = 1
-    set dictionary+=~/.vim/doc/funclist.txt
+    set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
 endfunction
 
