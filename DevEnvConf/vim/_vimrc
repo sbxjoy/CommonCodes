@@ -13,6 +13,8 @@ if has("vms")
 else	  
     set backup
 endif
+"在光标上下各留5行
+set so=5
 "在右下角显示当前光标位置
 set ruler
 "在右下角显示当前已输入但还未执行的命令
