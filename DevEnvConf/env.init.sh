@@ -32,3 +32,5 @@ if [[ $PATH != *$HOME/bin* ]]
 then
     cecho '$PATH 中不包含 '"$HOME/bin 请手动添加" $red
 fi
+
+#添加bash环境参数
