@@ -56,6 +56,8 @@ set helplang=cn
 "superTab 自动补全
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-N>"
+"关闭鼠标
+set mouse=
 
 "选择快捷键组
 map vi' <Esc>?'<CR>lv/'<CR>h
