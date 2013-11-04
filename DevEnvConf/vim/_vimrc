@@ -115,7 +115,7 @@ if v:version >=703
     set cc=81,101
 else
     hi ColorColumn ctermbg=red
-    au BufNewFile,BufRead *.* match ColorColumn /\%<82v.\%>81v/ | /\%<102v.\%>101v/
+    au BufNewFile,BufRead *.* match ColorColumn /\%<82v.\%>81v/
 endif
 
 nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
