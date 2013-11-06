@@ -1,63 +1,65 @@
-set hlsearch
-set t_Co=256
-colorscheme molokai
-"语法高亮
-syntax on
-"智能缩进
-set smartindent
-"自动对齐
-set autoindent
-"自动备份
-if has("vms")
-      set nobackup	
-else	  
-    set backup
-endif
-"在光标上下各留5行
-set so=5
-"在右下角显示当前光标位置
-set ruler
-"在右下角显示当前已输入但还未执行的命令
-set showcmd
-"自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
-filetype plugin indent on
-"缩进量
-set tabstop=4
-"缩进值，和tabstop什么关系？我也没搞清楚，反正我的这两个值是相同的
-set shiftwidth=4
-"把制表符换为空格
-set expandtab
-"搜索追踪
-set incsearch
-"强制将文件编码转为utf8
-set fileencoding=utf8
-"当前终端输入的编码
-set encoding=utf8
-"按照折叠符号折叠
-set foldmethod=marker
-"行首显示折叠标识的空格数
-set foldcolumn=2
-"备份文件目录
-set backupdir=~/backup/vim
-"备份文件扩展名
-set backupext=.bak
-"显示对应的半个括号位置
-set showmatch
-"显示行号
-set nu
-"设置背景为暗色
-"set background=dark
-"如果找Cscope数据库失败时，不要报错
-set nocscopeverbose
-"自动折行
-set wrap
-"帮助文档语言
-set helplang=cn
+set t_Co=256                                "256位色模式
+colorscheme molokai                         "配色方案
+set nobackup	                            "关闭自动备份
+set mouse=                                  "关闭鼠标
+set helplang=cn                             "帮助文档语言
+syntax on                                   "语法高亮
+set autochdir                               "自动将pwd切换为当前文件所在的目录
+
+set hlsearch                                "搜索高亮
+set incsearch                               "搜索追踪
+
+set backspace=indent,eol,start              "允许用退格符删除回车符
+
+set smartindent                             "智能缩进
+set autoindent                              "自动对齐
+set expandtab                               "把制表符换为空格
+set tabstop=4                               "缩进量
+set shiftwidth=4                            "缩进值，和tabstop什么关系？我也没搞清楚，反正我的这两个值是相同的
+filetype plugin indent on                   "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
+
+set fileencodings=utf-8,chinese             "文件编码扫描类型
+set fileencoding=utf-8                      "强制将文件编码转为utf8
+set encoding=utf-8                          "当前终端输入的编码
+set ambiwidth=double                        "把所有的不明宽度字符的宽度设为两个字符
+
+set so=5                                    "在光标上下各留5行
+set ruler                                   "在右下角显示当前光标位置
+set showcmd                                 "在右下角显示当前已输入但还未执行的命令
+set foldmethod=marker                       "按照折叠符号折叠
+set foldcolumn=2                            "行首显示折叠标识的空格数
+set showmatch                               "显示对应的半个括号位置
+set nu                                      "显示行号
+set wrap                                    "自动折行
+set cursorline cursorcolumn                 "高亮光标所在行和列
+au WinLeave * set nocursorline nocursorcolumn                                                        
+au WinEnter * set cursorline cursorcolumn 
+set laststatus=2                            "始终显示状态栏
+set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
+" 设置在状态行显示的信息如下：
+" %f 当前的文件名
+" %F 当前全路径文件名
+" %m 当前文件修改状态
+" %r 当前文件是否只读
+" %Y 当前文件类型
+" %{&fileformat}
+" 当前文件编码
+" %{&fileencoding}
+" 中文编码
+" %b 当前光标处字符的 ASCII 码值
+" %B 当前光标处字符的十六进制值
+" %l 当前光标行号
+" %c 当前光标列号
+" %V 当前光标虚拟列号 (根据字符所占字节数计算)
+" %p 当前行占总行数的百分比
+" %% 百分号
+" %L 当前文件总行数
+
+set nocscopeverbose                         "如果找Cscope数据库失败时，不要报错
+
 "superTab 自动补全
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-N>"
-"关闭鼠标
-set mouse=
 
 "选择快捷键组
 map vi' <Esc>?'<CR>lv/'<CR>h
@@ -84,21 +86,14 @@ map <leader>hm :res -10<CR>
 map <leader>wl :vertical res +10<CR>
 map <leader>wm :vertical res -10<CR>
 
-set csto=0
-"set aw
-"
+"php文件的特殊设置
 autocmd FileType php :call PhpKeys()
-
 function! PhpKeys()
     "php文件的缩进
     "let php_folding = 1
     set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
 endfunction
-
-noremap \dc <Esc>:Dox<CR>
-noremap \dd <Esc>:DoxUndoc<CR>
-noremap \da <Esc>:DoxAuthor<CR>
 
 "多标签，感觉没什么太大用处
 if v:version >= 700
@@ -111,11 +106,23 @@ endif
 
 "第81和101列高亮
 if v:version >=703
-    hi ColorColumn ctermbg=black
     set cc=81,101
 else
     hi ColorColumn ctermbg=red
     au BufNewFile,BufRead *.* match ColorColumn /\%<82v.\%>81v/
+endif
+
+"图形界面设定
+if has("gui_running")
+    if has("win32")
+        autocmd GUIEnter * simalt ~x        "windows 下 gvim 启动时最大化
+    endif
+    "图形界面下的字体。
+    if has("mac")
+        set guifont=Ubuntu\ Mono:h20
+    else
+        set guifont=Ubuntu\ Mono:h12
+    endif
 endif
 
 nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
