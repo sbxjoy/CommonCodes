@@ -115,13 +115,14 @@ endif
 "图形界面设定
 if has("gui_running")
     if has("win32")
+        set guifont=Ubuntu\ Mono:h12        "字体字号
         autocmd GUIEnter * simalt ~x        "windows 下 gvim 启动时最大化
-    endif
-    "图形界面下的字体。
-    if has("mac")
-        set guifont=Ubuntu\ Mono:h20
+    elseif has("mac")
+        set guifont=Ubuntu\ Mono:h12        "字体字号
+        set lines=35                        "窗口打开时的行数
+        set columns=129                     "窗口打开时的列数
     else
-        set guifont=Ubuntu\ Mono:h12
+        set guifont=Ubuntu\ Mono:h12        "字体字号
     endif
 endif
 
