@@ -90,7 +90,8 @@ map <leader>wm :vertical res -10<CR>
 autocmd FileType php :call PhpKeys()
 function! PhpKeys()
     "php文件的缩进
-    "let php_folding = 1
+"    let php_folding=1
+"    set foldmethod=syntax
     set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
 endfunction
@@ -127,3 +128,7 @@ if has("gui_running")
 endif
 
 nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
+set pastetoggle=<F12>
+
+vnoremap bd /<C-R><C-R>"
+
