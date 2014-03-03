@@ -5,24 +5,32 @@ set mouse=                                  "关闭鼠标
 set helplang=cn                             "帮助文档语言
 syntax on                                   "语法高亮
 set autochdir                               "自动将pwd切换为当前文件所在的目录
-
 set hlsearch                                "搜索高亮
 set incsearch                               "搜索追踪
-
-set backspace=indent,eol,start              "允许用退格符删除回车符
-
+set backspace=indent,start                  "允许用退格符删除回车符
 set smartindent                             "智能缩进
 set autoindent                              "自动对齐
 set expandtab                               "把制表符换为空格
 set tabstop=4                               "缩进量
 set shiftwidth=4                            "缩进值，和tabstop什么关系？我也没搞清楚，反正我的这两个值是相同的
 filetype plugin indent on                   "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
+set pastetoggle=<F12>                       "F12作为粘贴模式的转换键
 
+"专门为windows的设置
+set winaltkeys=no                           "在windows下禁用菜单alt键，使得alt可以使用
+
+"文件编码相关的设置
 set fileencodings=utf-8,chinese             "文件编码扫描类型
-set fileencoding=utf-8                      "强制将文件编码转为utf8
-set encoding=utf-8                          "当前终端输入的编码
+if has ('win32')
+    set fileencoding=chinese                "windows下默认的文件编码为gbk
+    set encoding=chinese                    "当前终端输入的编码
+else
+    set fileencoding=utf-8                  "强制将文件编码转为utf8
+    set encoding=utf-8                      "当前终端输入的编码
+endif
 set ambiwidth=double                        "把所有的不明宽度字符的宽度设为两个字符
 
+set selection=inclusive                     "可视模式下将当前光标所在的字符选中
 set so=5                                    "在光标上下各留5行
 set ruler                                   "在右下角显示当前光标位置
 set showcmd                                 "在右下角显示当前已输入但还未执行的命令
@@ -32,7 +40,7 @@ set showmatch                               "显示对应的半个括号位置
 set nu                                      "显示行号
 set wrap                                    "自动折行
 set cursorline cursorcolumn                 "高亮光标所在行和列
-au WinLeave * set nocursorline nocursorcolumn                                                        
+au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn 
 set laststatus=2                            "始终显示状态栏
 set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
@@ -76,15 +84,30 @@ map vt; <ESC>v/;<CR>h
 map vt, <ESC>v/,<CR>h
 map vt} <ESC>v/}<CR>h
 
+" 在插入模式下使用光标移动指令 'A'代表Alt键
+inoremap <A-h> <Left>
+inoremap <A-j> <Down>
+inoremap <A-k> <Up>
+inoremap <A-l> <Right>
+ 
+" 在插入模式下使用光标移动一个单词
+"inoremap <C-h> <C-Left>
+"inoremap <C-l> <C-Right>
+ 
 "用\q呼起project插件
 nmap <silent> <Leader>q <Plug>ToggleProject
 
 "调整窗口高度
-map <leader>hl :res +10<CR>
-map <leader>hm :res -10<CR>
+"map <leader>sl :res +10<CR>
+"map <leader>sm :res -10<CR>
+"map <leader>sbl :res +25<CR>
+"map <leader>sbm :res -25<CR>
 "调整窗口宽度
-map <leader>wl :vertical res +10<CR>
-map <leader>wm :vertical res -10<CR>
+"map <leader>vl :vertical res +10<CR>
+"map <leader>vm :vertical res -10<CR>
+"map <leader>vbl :vertical res +20<CR>
+"map <leader>vbm :vertical res -20<CR>
+
 
 "php文件的特殊设置
 autocmd FileType php :call PhpKeys()
@@ -119,7 +142,7 @@ if has("gui_running")
         set guifont=Ubuntu\ Mono:h12        "字体字号
         autocmd GUIEnter * simalt ~x        "windows 下 gvim 启动时最大化
     elseif has("mac")
-        set guifont=Ubuntu\ Mono:h12        "字体字号
+        set guifont=Ubuntu\ Mono:h20        "字体字号
         set lines=35                        "窗口打开时的行数
         set columns=129                     "窗口打开时的列数
     else
