@@ -99,16 +99,8 @@ inoremap <A-l> <Right>
 nmap <silent> <Leader>q <Plug>ToggleProject
 
 "调整窗口高度
-"map <leader>sl :res +10<CR>
-"map <leader>sm :res -10<CR>
-"map <leader>sbl :res +25<CR>
-"map <leader>sbm :res -25<CR>
-"调整窗口宽度
-"map <leader>vl :vertical res +10<CR>
-"map <leader>vm :vertical res -10<CR>
-"map <leader>vbl :vertical res +20<CR>
-"map <leader>vbm :vertical res -20<CR>
-
+map + :res +3<CR>
+map _ :res -3<CR>
 
 "php文件的特殊设置
 autocmd FileType php :call PhpKeys()
