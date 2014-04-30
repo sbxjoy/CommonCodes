@@ -15,6 +15,7 @@ set tabstop=4                               "缩进量
 set shiftwidth=4                            "缩进值，和tabstop什么关系？我也没搞清楚，反正我的这两个值是相同的
 filetype plugin indent on                   "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 set pastetoggle=<F12>                       "F12作为粘贴模式的转换键
+set listchars=tab:>-,trail:-
 
 "专门为windows的设置
 set winaltkeys=no                           "在windows下禁用菜单alt键，使得alt可以使用
@@ -41,7 +42,7 @@ set nu                                      "显示行号
 set wrap                                    "自动折行
 set cursorline cursorcolumn                 "高亮光标所在行和列
 au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn 
+au WinEnter * set cursorline cursorcolumn
 set laststatus=2                            "始终显示状态栏
 set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
 " 设置在状态行显示的信息如下：
@@ -89,11 +90,11 @@ inoremap <A-h> <Left>
 inoremap <A-j> <Down>
 inoremap <A-k> <Up>
 inoremap <A-l> <Right>
- 
+
 " 在插入模式下使用光标移动一个单词
 "inoremap <C-h> <C-Left>
 "inoremap <C-l> <C-Right>
- 
+
 "用\q呼起project插件
 nmap <silent> <Leader>q <Plug>ToggleProject
 
@@ -113,8 +114,8 @@ nmap <silent> <Leader>q <Plug>ToggleProject
 autocmd FileType php :call PhpKeys()
 function! PhpKeys()
     "php文件的缩进
-"    let php_folding=1
-"    set foldmethod=syntax
+    "    let php_folding=1
+    "    set foldmethod=syntax
     set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
 endfunction
@@ -123,8 +124,8 @@ endfunction
 if v:version >= 700
     :map <C-w>p :tabprevious<cr>
     :map <C-w>n :tabnext<cr>
-"    :imap <C-w>p <ESC>:tabprevious<cr>i
-"    :imap <C-w>x <ESC>:tabnext<cr>i
+    "    :imap <C-w>p <ESC>:tabprevious<cr>i
+    "    :imap <C-w>x <ESC>:tabnext<cr>i
     :nmap <C-w>t :tabnew<cr>
 endif
 
@@ -135,6 +136,9 @@ else
     hi ColorColumn ctermbg=red
     au BufNewFile,BufRead *.* match ColorColumn /\%<82v.\%>81v/
 endif
+
+"快捷键自动对齐并去掉末尾的空格
+nmap <silent> <F7> msgg=G's :w<CR>
 
 "图形界面设定
 if has("gui_running")
@@ -152,6 +156,3 @@ endif
 
 nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
 set pastetoggle=<F12>
-
-vnoremap bd /<C-R><C-R>"
-
