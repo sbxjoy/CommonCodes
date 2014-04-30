@@ -15,7 +15,7 @@ set smartindent                             "智能缩进
 set autoindent                              "自动对齐
 set expandtab                               "把制表符换为空格
 set tabstop=4                               "缩进量
-set shiftwidth=4                            "缩进值，和tabstop什么关系？我也没搞清楚，反正我的这两个值是相同的
+set shiftwidth=4                            "缩进值，用<<和>>的缩进量
 filetype plugin indent on                   "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 
 set fileencodings=utf-8,chinese             "文件编码扫描类型
@@ -36,24 +36,24 @@ au WinLeave * set nocursorline nocursorcolumn
 au WinEnter * set cursorline cursorcolumn 
 set laststatus=2                            "始终显示状态栏
 set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
-" 设置在状态行显示的信息如下：
-" %f 当前的文件名
-" %F 当前全路径文件名
-" %m 当前文件修改状态
-" %r 当前文件是否只读
-" %Y 当前文件类型
-" %{&fileformat}
-" 当前文件编码
-" %{&fileencoding}
-" 中文编码
-" %b 当前光标处字符的 ASCII 码值
-" %B 当前光标处字符的十六进制值
-" %l 当前光标行号
-" %c 当前光标列号
-" %V 当前光标虚拟列号 (根据字符所占字节数计算)
-" %p 当前行占总行数的百分比
-" %% 百分号
-" %L 当前文件总行数
+"设置在状态行显示的信息如下：
+"%f 当前的文件名
+"%F 当前全路径文件名
+"%m 当前文件修改状态
+"%r 当前文件是否只读
+"%Y 当前文件类型
+"%{&fileformat}
+"当前文件编码
+"%{&fileencoding}
+"中文编码
+"%b 当前光标处字符的 ASCII 码值
+"%B 当前光标处字符的十六进制值
+"%l 当前光标行号
+"%c 当前光标列号
+"%V 当前光标虚拟列号 (根据字符所占字节数计算)
+"%p 当前行占总行数的百分比
+"%% 百分号
+"%L 当前文件总行数
 
 set nocscopeverbose                         "如果找Cscope数据库失败时，不要报错
 
@@ -118,7 +118,7 @@ if has("gui_running")
         set guifont=Ubuntu\ Mono:h12        "字体字号
         autocmd GUIEnter * simalt ~x        "windows 下 gvim 启动时最大化
     elseif has("mac")
-        set guifont=Ubuntu\ Mono:h12        "字体字号
+        set guifont=Ubuntu\ Mono:h20        "字体字号
         set lines=35                        "窗口打开时的行数
         set columns=129                     "窗口打开时的列数
     else
