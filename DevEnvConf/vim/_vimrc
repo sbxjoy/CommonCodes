@@ -1,6 +1,6 @@
 set t_Co=256                                "256位色模式
 colorscheme molokai                         "配色方案
-set nobackup	                            "关闭自动备份
+set nobackup                                "关闭自动备份
 set mouse=                                  "关闭鼠标
 set helplang=cn                             "帮助文档语言
 syntax on                                   "语法高亮
@@ -15,7 +15,8 @@ set tabstop=4                               "缩进量
 set shiftwidth=4                            "缩进值，用<<和>>的缩进量
 filetype plugin indent on                   "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 set pastetoggle=<F12>                       "F12作为粘贴模式的转换键
-set listchars=tab:>-,trail:-
+set list                                    "显示特殊字符
+set listchars=tab:>-,eol:$                  "需要显示的特殊字符，tab显示为>----,换行显示为$
 
 "专门为windows的设置
 set winaltkeys=no                           "在windows下禁用菜单alt键，使得alt可以使用
@@ -91,12 +92,8 @@ inoremap <A-j> <Down>
 inoremap <A-k> <Up>
 inoremap <A-l> <Right>
 
-" 在插入模式下使用光标移动一个单词
-"inoremap <C-h> <C-Left>
-"inoremap <C-l> <C-Right>
-
 "用\q呼起project插件
-nmap <silent> <Leader>q <Plug>ToggleProject
+nmap <silent> q <Plug>ToggleProject
 
 "调整窗口高度
 map + :res +3<CR>
@@ -147,4 +144,3 @@ if has("gui_running")
 endif
 
 nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
-set pastetoggle=<F12>
