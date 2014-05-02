@@ -1,61 +1,56 @@
-set t_Co=256                                "256位色模式
-colorscheme molokai                         "配色方案
-set nobackup                                "关闭自动备份
-set mouse=                                  "关闭鼠标
-set helplang=cn                             "帮助文档语言
-syntax on                                   "语法高亮
-set autochdir                               "自动将pwd切换为当前文件所在的目录
-set hlsearch                                "搜索高亮
-set incsearch                               "搜索追踪
-set backspace=indent,start                  "允许用退格符删除回车符
-set smartindent                             "智能缩进
-set autoindent                              "自动对齐
-set expandtab                               "把制表符换为空格
-set tabstop=4                               "缩进量
-set shiftwidth=4                            "缩进值，用<<和>>的缩进量
-filetype plugin indent on                   "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
-set pastetoggle=<F12>                       "F12作为粘贴模式的转换键
-set list                                    "显示特殊字符
-set listchars=tab:>-,eol:$                  "需要显示的特殊字符，tab显示为>----,换行显示为$
-
-"专门为windows的设置
-set winaltkeys=no                           "在windows下禁用菜单alt键，使得alt可以使用
+set t_Co=256                                  "256位色模式
+colorscheme molokai                           "配色方案
+set nobackup                                  "关闭自动备份
+set mouse=                                    "关闭鼠标
+set helplang=cn                               "帮助文档语言
+syntax on                                     "语法高亮
+set autochdir                                 "自动将pwd切换为当前文件所在的目录
+set hlsearch                                  "搜索高亮
+set incsearch                                 "搜索追踪
+set backspace=indent,start                    "允许用退格符删除回车符
+set smartindent                               "智能缩进
+set autoindent                                "自动对齐
+set expandtab                                 "把制表符换为空格
+set tabstop=4                                 "缩进量
+set shiftwidth=4                              "缩进值，用<<和>>的缩进量
+filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
+set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
+set list                                      "显示特殊字符
+set listchars=tab:>-,eol:$                    "需要显示的特殊字符，tab显示为>----,换行显示为$
+set ambiwidth=double                          "把所有的不明宽度字符的宽度设为两个字符
+set selection=inclusive                       "可视模式下将当前光标所在的字符选中
+set so=5                                      "在光标上下各留5行
+set ruler                                     "在右下角显示当前光标位置
+set showcmd                                   "在右下角显示当前已输入但还未执行的命令
+set foldmethod=marker                         "按照折叠符号折叠
+set foldcolumn=2                              "行首显示折叠标识的空格数
+set showmatch                                 "显示对应的半个括号位置
+set nu                                        "显示行号
+set wrap                                      "自动折行
+set cursorline cursorcolumn                   "高亮光标所在行和列
+au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在的行和列
+au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮
+set laststatus=2                              "始终显示状态栏
+set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
 
 "文件编码相关的设置
-set fileencodings=utf-8,chinese             "文件编码扫描类型
+set fileencodings=utf-8,chinese               "文件编码扫描类型
 if has ('win32')
-    set fileencoding=chinese                "windows下默认的文件编码为gbk
-    set encoding=chinese                    "当前终端输入的编码
+    set fileencoding=chinese                  "windows下默认的文件编码为gbk
+    set encoding=chinese                      "当前终端输入的编码
 else
-    set fileencoding=utf-8                  "强制将文件编码转为utf8
-    set encoding=utf-8                      "当前终端输入的编码
+    set fileencoding=utf-8                    "强制将文件编码转为utf8
+    set encoding=utf-8                        "当前终端输入的编码
 endif
-set ambiwidth=double                        "把所有的不明宽度字符的宽度设为两个字符
-
-set selection=inclusive                     "可视模式下将当前光标所在的字符选中
-set so=5                                    "在光标上下各留5行
-set ruler                                   "在右下角显示当前光标位置
-set showcmd                                 "在右下角显示当前已输入但还未执行的命令
-set foldmethod=marker                       "按照折叠符号折叠
-set foldcolumn=2                            "行首显示折叠标识的空格数
-set showmatch                               "显示对应的半个括号位置
-set nu                                      "显示行号
-set wrap                                    "自动折行
-set cursorline cursorcolumn                 "高亮光标所在行和列
-au WinLeave * set nocursorline nocursorcolumn
-au WinEnter * set cursorline cursorcolumn
-set laststatus=2                            "始终显示状态栏
-set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
+set statusline=%f%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \  
 "设置在状态行显示的信息如下：
 "%f 当前的文件名
 "%F 当前全路径文件名
 "%m 当前文件修改状态
 "%r 当前文件是否只读
 "%Y 当前文件类型
-"%{&fileformat}
-"当前文件编码
-"%{&fileencoding}
-"中文编码
+"%{&fileformat} 当前文件编码
+"%{&fileencoding} 中文编码
 "%b 当前光标处字符的 ASCII 码值
 "%B 当前光标处字符的十六进制值
 "%l 当前光标行号
@@ -65,7 +60,12 @@ set statusline=%F%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \|\ %f
 "%% 百分号
 "%L 当前文件总行数
 
-set nocscopeverbose                         "如果找Cscope数据库失败时，不要报错
+"快捷键自动对齐并去掉末尾的空格
+nmap <silent> <F7> msgg=G's :w<CR>
+
+"Cscope插件
+set nocscopeverbose                           "如果找Cscope数据库失败时，不要报错
+nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
 
 "superTab 自动补全
 let g:SuperTabRetainCompletionType=2
@@ -86,18 +86,19 @@ map vt; <ESC>v/;<CR>h
 map vt, <ESC>v/,<CR>h
 map vt} <ESC>v/}<CR>h
 
-" 在插入模式下使用光标移动指令 'A'代表Alt键
-inoremap <A-h> <Left>
-inoremap <A-j> <Down>
-inoremap <A-k> <Up>
-inoremap <A-l> <Right>
+" 在插入模式下使用光标移动指令 'C'代表Ctrl键
+" 需要修改xshell的keyboard配置Backspace为ASCII 127
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
-"用\q呼起project插件
+"用q呼起project插件
 nmap <silent> q <Plug>ToggleProject
 
 "调整窗口高度
-map + :res +3<CR>
-map _ :res -3<CR>
+map <silent> + :res +3<CR>
+map <silent> _ :res -3<CR>
 
 "php文件的特殊设置
 autocmd FileType php :call PhpKeys()
@@ -113,8 +114,8 @@ endfunction
 if v:version >= 700
     :map <C-w>p :tabprevious<cr>
     :map <C-w>n :tabnext<cr>
-    "    :imap <C-w>p <ESC>:tabprevious<cr>i
-    "    :imap <C-w>x <ESC>:tabnext<cr>i
+"    :imap <C-w>p <ESC>:tabprevious<cr>i
+"    :imap <C-w>x <ESC>:tabnext<cr>i
     :nmap <C-w>t :tabnew<cr>
 endif
 
@@ -125,9 +126,6 @@ else
     hi ColorColumn ctermbg=red
     au BufNewFile,BufRead *.* match ColorColumn /\%<82v.\%>81v/
 endif
-
-"快捷键自动对齐并去掉末尾的空格
-nmap <silent> <F7> msgg=G's :w<CR>
 
 "图形界面设定
 if has("gui_running")
@@ -143,4 +141,3 @@ if has("gui_running")
     endif
 endif
 
-nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
