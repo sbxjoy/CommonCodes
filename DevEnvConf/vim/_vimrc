@@ -4,7 +4,7 @@ set nobackup                                  "关闭自动备份
 set mouse=                                    "关闭鼠标
 set helplang=cn                               "帮助文档语言
 syntax on                                     "语法高亮
-set autochdir                                 "自动将pwd切换为当前文件所在的目录
+"set autochdir                                 "自动将pwd切换为当前文件所在的目录
 set hlsearch                                  "搜索高亮
 set incsearch                                 "搜索追踪
 set backspace=indent,start                    "允许用退格符删除回车符
@@ -140,4 +140,6 @@ if has("gui_running")
         set guifont=Ubuntu\ Mono:h12        "字体字号
     endif
 endif
+
+nmap <silent> <leader>t A//writen by LX<ESC>
 
