@@ -108,6 +108,8 @@ function! PhpKeys()
     "    set foldmethod=syntax
     set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
+    vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
+    vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
 endfunction
 
 "多标签，感觉没什么太大用处
