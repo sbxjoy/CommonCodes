@@ -108,6 +108,7 @@ function! PhpKeys()
     "    set foldmethod=syntax
     set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
+    set cot=longest,menu "自动补全时出最长无分歧的字符串
     vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
     vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
 endfunction
