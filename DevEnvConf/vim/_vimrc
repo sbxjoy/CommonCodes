@@ -32,6 +32,7 @@ au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在
 au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮
 set laststatus=2                              "始终显示状态栏
 set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
+set completeopt=longest,menu                  "自动补全时出最长无分歧的字符串和menu列表
 
 "文件编码相关的设置
 set fileencodings=utf-8,chinese               "文件编码扫描类型
@@ -108,7 +109,6 @@ function! PhpKeys()
     "    set foldmethod=syntax
     set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
-    set cot=longest,menu "自动补全时出最长无分歧的字符串
     vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
     vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
 endfunction
