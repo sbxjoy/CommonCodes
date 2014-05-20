@@ -1,5 +1,3 @@
-#!	/usr/local/bin/bash
-
 #	print colored text
 #	$1 = message
 #	$2 = color
@@ -174,16 +172,3 @@ link_path()
         ln -sfn $source_path $dest_path
     fi
 }
-
-########################################
-# 如果文件中不存在该行内容，则追加
-# filename content
-########################################
-add_to_file()
-{
-    filename=$1
-    content=$2
-    egrep -e "^$content$" $filename
-    echo $?
-}
-add_to_file utils.sh "add_to_file()" 

@@ -116,8 +116,8 @@ endfunction
 if v:version >= 700
     :map <C-w>p :tabprevious<cr>
     :map <C-w>n :tabnext<cr>
-    "    :imap <C-w>p <ESC>:tabprevious<cr>i
-    "    :imap <C-w>x <ESC>:tabnext<cr>i
+"    :imap <C-w>p <ESC>:tabprevious<cr>i
+"    :imap <C-w>x <ESC>:tabnext<cr>i
     :nmap <C-w>t :tabnew<cr>
 endif
 
