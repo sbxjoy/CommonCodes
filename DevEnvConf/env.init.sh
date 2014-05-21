@@ -4,6 +4,9 @@
 LANGUAGE='utf-8'
 this_file=`pwd`"/"$0
 project_home=`dirname $this_file`
+echo $project_home
+echo $0
+echo $1
 . $project_home/utils.sh
 
 #创建一些目录
