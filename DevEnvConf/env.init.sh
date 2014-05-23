@@ -12,7 +12,7 @@ project_home=`dirname $this_file`
 dirs="$HOME/backup $HOME/backup/vim"
 for dir in $dirs
 do
-    if [ -a $dir ]
+    if test -d $dir
     then
         cecho "$dir 已存在！" $green
     else
