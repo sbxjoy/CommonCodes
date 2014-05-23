@@ -7,6 +7,8 @@ syntax on                                     "语法高亮
 "set autochdir                                 "自动将pwd切换为当前文件所在的目录
 set hlsearch                                  "搜索高亮
 set incsearch                                 "搜索追踪
+set ignorecase                                "忽略大小写$
+set smartcase                                 "当查询串中有至少一个大写字母时对大小写敏感
 set backspace=indent,start                    "允许用退格符删除回车符
 set smartindent                               "智能缩进
 set autoindent                                "自动对齐
@@ -33,12 +35,20 @@ au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光
 set laststatus=2                              "始终显示状态栏
 set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
 set completeopt=longest,menu                  "自动补全时出最长无分歧的字符串和menu列表
+set history=1000                              "保留1000次历史
+set nocompatible                              "关闭VI兼容模式
+set confirm                                   "关闭未保存的文件时提示
+set iskeyword+=_,$,@,%,#,-               "???
+set report=0                                  "显示被替换的次数
+set matchpairs+=<:>                           "添加对html的括号匹配
 
 "文件编码相关的设置
 set fileencodings=utf-8,chinese               "文件编码扫描类型
 if has ('win32')
     set fileencoding=chinese                  "windows下默认的文件编码为gbk
     set encoding=chinese                      "当前终端输入的编码
+    set clipboard+=unnamed                    "与windows共享剪切板
+    set title
 else
     set fileencoding=utf-8                    "强制将文件编码转为utf8
     set encoding=utf-8                        "当前终端输入的编码
