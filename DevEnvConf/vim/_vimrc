@@ -16,7 +16,6 @@ set expandtab                                 "把制表符换为空格
 set tabstop=4                                 "缩进量
 set shiftwidth=4                              "缩进值，用<<和>>的缩进量
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
-set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
 set list                                      "显示特殊字符
 set listchars=tab:>-,eol:$                    "需要显示的特殊字符，tab显示为>----,换行显示为$
 set ambiwidth=double                          "把所有的不明宽度字符的宽度设为两个字符
@@ -35,10 +34,10 @@ au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光
 set laststatus=2                              "始终显示状态栏
 set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
 set completeopt=longest,menu                  "自动补全时出最长无分歧的字符串和menu列表
-set history=1000                              "保留1000次历史
+set history=100                               "保留1000次历史
 set nocompatible                              "关闭VI兼容模式
 set confirm                                   "关闭未保存的文件时提示
-set iskeyword+=_,$,@,%,#,-                    "碰到这些字符是时候仍然认为是一个词
+set iskeyword+=$,%,#,-                        "碰到这些字符是时候仍然认为是一个词
 set report=0                                  "显示被替换的次数
 set matchpairs+=<:>                           "添加对html的括号匹配
 
@@ -71,12 +70,10 @@ set statusline=%f%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \
 "%% 百分号
 "%L 当前文件总行数
 
-"快捷键自动对齐并去掉末尾的空格
-nmap <silent> <F7> msgg=G's :w<CR>
 
 "Cscope插件
 set nocscopeverbose                           "如果找Cscope数据库失败时，不要报错
-nmap <leader>ff :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>f :cs find t <C-R>=expand("<cword>")<CR><CR>
 
 "superTab 自动补全
 let g:SuperTabRetainCompletionType=2
@@ -154,5 +151,11 @@ if has("gui_running")
     endif
 endif
 
-nmap <silent> <leader>t A//writen by LX<ESC>
 
+
+nmap <silent> <leader>t A//writen by LX<ESC>
+set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
+"快捷键自动对齐并去掉末尾的空格
+nmap <silent> <F7> msgg=G's :w<CR>
+"F3 重建cscope数据库
+map <silent> <F3> <ESC> :!find ./src -name '*.php' > cscope.files ; cscope -bkq -i cscope.files<CR>
