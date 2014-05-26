@@ -159,3 +159,31 @@ set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
 nmap <silent> <F7> msgg=G's :w<CR>
 "F3 重建cscope数据库
 map <silent> <F3> <ESC> :!find ./src -name '*.php' > cscope.files ; cscope -bkq -i cscope.files<CR>
+
+nmap <silent> <leader>g :call MyGrep("normal")<CR>
+vmap <silent> <leader>g :call MyGrep("visual")<CR>
+
+set wildignore+=*.log*,*.svn
+set wildignore+=*.aux,*.out,*.toc " LaTeX intermediate files  
+set wildignore+=*.jpg,*.bmp,*.gif " binary images  
+set wildignore+=*.luac " Lua byte code  
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files  
+set wildignore+=*.pyc " Python byte code  
+set wildignore+=*.spl " compiled spelling word lists  
+set wildignore+=*.sw? " Vim swap files 
+
+function! MyGrep(mode)
+    if !exists('g:proj_running')
+        let l:files = '%'
+    else
+        let l:files = '**'
+    endif
+    if a:mode == "normal"
+        let l:word=expand("<cword>")
+    endif
+    if a:mode == "visual"
+        let l:word=eval('y')
+    endif
+    execute "vimgrep /". l:word ."/g ". l:files
+    exec 'cw'
+endfunction
