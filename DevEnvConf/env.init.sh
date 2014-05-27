@@ -24,7 +24,7 @@ done
 #vim 目录
 link_path $project_home/vim $HOME/.vim
 #vimrc
-link_path $project_home/vim/_vimrc $HOME/.vimrc
+link_path $project_home/vim/vimrc $HOME/.vimrc
 
 #bin 目录的创建和检查
 link_path $project_home/bin $HOME/bin
