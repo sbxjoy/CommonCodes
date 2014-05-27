@@ -19,6 +19,7 @@ do
         mkdir $dir
     fi
 done
+git clone https://github.com/gmarik/vundle.git $project_home/vim/bundle/vundle
 
 #vim 相关的link
 #vim 目录
