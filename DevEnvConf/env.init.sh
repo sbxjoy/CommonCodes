@@ -27,6 +27,7 @@ link_path $project_home/vim $HOME/.vim
 #vimrc
 link_path $project_home/vim/vimrc $HOME/.vimrc
 
+
 #bin 目录的创建和检查
 link_path $project_home/bin $HOME/bin
 if [[ $PATH != *$HOME/bin* ]]
@@ -35,6 +36,13 @@ then
 fi
 #添加bash环境参数
 # TODO
+
+
+cd /tmp
+git clone https://github.com/vim-php/phpctags.git
+cd /tmp/phpctags
+make
+mv /tmp/phpctags/phpctags ~/bin/phpctags
 
 crontab -l > /tmp/curr.cron
 cnt=`cat /tmp/curr.cron | grep $project_home | wc -l`

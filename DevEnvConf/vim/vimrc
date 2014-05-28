@@ -4,7 +4,7 @@ filetype plugin indent on                     "自动识别文件类型，用文
 " NeoComplCache
 let g:neocomplcache_enable_at_startup=1
 let g:neoComplcache_disableautocomplete=1
-let g:neocomplcache_enable_auto_select=1
+"let g:neocomplcache_enable_auto_select=1
 let g:neocomplcache_enable_smart_case=1
 let g:neocomplcache_min_syntax_length=3
 let g:neocomplcache_lock_buffer_name_pattern='\*ku\*'
@@ -13,6 +13,10 @@ let g:neocomplcache_dictionary_filetype_lists={'default' : '', 'php' : '~/.vim/d
 
 "ack
 
+let g:syntastic_css_checkers = ['prettycss']
+
+nmap <leader>x <plug>NERDCommenterToggle
+xmap <leader>x <plug>NERDCommenterToggle
 
 
 set t_Co=256                                  "256位色模式
@@ -93,8 +97,9 @@ set nocscopeverbose                           "如果找Cscope数据库失败时
 nmap <leader>f :cs find t <C-R>=expand("<cword>")<CR><CR>
 
 "自动补全
-let g:neocomplcache_enable_at_startup = 1
-let g:SuperTabDefaultCompletionType="context"
+let g:SuperTabRetainCompletionType=2
+let g:SuperTabDefaultCompletionType="<C-N>"
+"let g:SuperTabDefaultCompletionType="context"
 
 "选择快捷键组
 map vi' <Esc>?'<CR>lv/'<CR>h
@@ -168,6 +173,7 @@ if has("gui_running")
     endif
 endif
 
+nmap <Leader>n :noh<cr>
 
 
 nmap <silent> <leader>t A//writen by LX<ESC>
