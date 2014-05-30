@@ -17,6 +17,7 @@ let g:syntastic_css_checkers = ['prettycss']
 
 nmap <leader>x <plug>NERDCommenterToggle
 xmap <leader>x <plug>NERDCommenterToggle
+let NERDCompactSexyComs=1
 
 
 set t_Co=256                                  "256位色模式
