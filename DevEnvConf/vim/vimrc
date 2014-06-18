@@ -1,18 +1,7 @@
 source ~/.vim/bundles.vim
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 
-" NeoComplCache
-let g:neocomplcache_enable_at_startup=1
-let g:neoComplcache_disableautocomplete=1
-"let g:neocomplcache_enable_auto_select=1
-let g:neocomplcache_enable_smart_case=1
-let g:neocomplcache_min_syntax_length=3
-let g:neocomplcache_lock_buffer_name_pattern='\*ku\*'
-set completeopt-=preview
-let g:neocomplcache_dictionary_filetype_lists={'default' : '', 'php' : '~/.vim/doc/php_funclist.txt', }
-
 "ack
-
 let g:syntastic_css_checkers = ['prettycss']
 
 nmap <leader>x <plug>NERDCommenterToggle
@@ -137,8 +126,8 @@ function! PhpKeys()
     "php文件的缩进
     "    let php_folding=1
     "    set foldmethod=syntax
-"    set dictionary+=~/.vim/doc/php_funclist.txt
-"    set complete+=k
+    set dictionary+=~/.vim/doc/php_funclist.txt
+    set complete+=k
     vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
     vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
 endfunction

@@ -12,7 +12,7 @@ Bundle 'gmarik/vundle'
 " Code Completions
 "------------------
 "强大的自动补全
-Bundle 'Shougo/neocomplcache' 
+"Bundle 'Shougo/neocomplcache' 
 "Bundle 'honza/vim-snippets'
 "这个不用说了吧
 Bundle 'ervandew/supertab' 
