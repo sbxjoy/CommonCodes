@@ -24,6 +24,7 @@ Bundle 'ervandew/supertab'
 "Bundle 'tomtom/tlib_vim'
 " Bundle 'garbas/vim-snipmate'
 " Bundle 'jamescarr/snipmate-nodejs'
+Bundle 'vim-scripts/Pydiction'
 
 "-----------------
 " Fast navigation
