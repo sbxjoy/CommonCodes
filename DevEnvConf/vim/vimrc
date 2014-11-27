@@ -9,11 +9,12 @@ xmap <leader>x <plug>NERDCommenterToggle
 let NERDCompactSexyComs=1
 
 
+set nocompatible                              "关闭VI兼容模式
 set t_Co=256                                  "256位色模式
 colorscheme molokai                           "配色方案
 set nobackup                                  "关闭自动备份
 set mouse=                                    "关闭鼠标
-set helplang=en                               "帮助文档语言
+set helplang=cn                               "帮助文档语言
 syntax on                                     "语法高亮
 "set autochdir                                 "自动将pwd切换为当前文件所在的目录
 set hlsearch                                  "搜索高亮
@@ -32,12 +33,12 @@ set ambiwidth=double                          "把所有的不明宽度字符的
 set selection=inclusive                       "可视模式下将当前光标所在的字符选中
 set so=5                                      "在光标上下各留5行
 set ruler                                     "在右下角显示当前光标位置
-set showcmd                                   "在右下角显示当前已输入但还未执行的命令
 set foldmethod=marker                         "按照折叠符号折叠
 set foldcolumn=2                              "行首显示折叠标识的空格数
 set showmatch                                 "显示对应的半个括号位置
 set nu                                        "显示行号
 set wrap                                      "自动折行
+set showmode                                  "在左下角显示当前模式
 set cursorline cursorcolumn                   "高亮光标所在行和列
 au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在的行和列
 au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮
@@ -45,7 +46,7 @@ set laststatus=2                              "始终显示状态栏
 set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
 set completeopt=preview,menu                  "自动补全时出最长无分歧的字符串和menu列表
 set history=100                               "保留1000次历史
-set nocompatible                              "关闭VI兼容模式
+set showcmd                                   "在右下角显示当前已输入但还未执行的命令
 set confirm                                   "关闭未保存的文件时提示
 set iskeyword+=$,%,#,-                        "碰到这些字符是时候仍然认为是一个词
 set report=0                                  "显示被替换的次数
@@ -62,8 +63,19 @@ else
     set fileencoding=utf-8                    "强制将文件编码转为utf8
     set encoding=utf-8                        "当前终端输入的编码
 endif
-"set statusline=%f%m%r\ \|\ %Y,%{&fileencoding}\ \|%=\ %l/%L,%c\ \  
-set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+set statusline=%<%{GetCwd()}%f\ %{HasPaste()}\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l行,%c%V列%)\ 共%L行\ %P
+function! HasPaste()
+    if &paste
+        return '  [粘贴模式]  '
+    en
+    return ''
+endfunction
+function! GetCwd()
+    if exists("g:proj_running")
+        return ''
+    en
+        return getcwd()
+endfunction
 "设置在状态行显示的信息如下：
 "%f 当前的文件名
 "%F 当前全路径文件名
@@ -136,8 +148,8 @@ endfunction
 if v:version >= 700
     :map <C-w>p :tabprevious<cr>
     :map <C-w>n :tabnext<cr>
-"    :imap <C-w>p <ESC>:tabprevious<cr>i
-"    :imap <C-w>x <ESC>:tabnext<cr>i
+    "    :imap <C-w>p <ESC>:tabprevious<cr>i
+    "    :imap <C-w>x <ESC>:tabnext<cr>i
     :nmap <C-w>t :tabnew<cr>
 endif
 
