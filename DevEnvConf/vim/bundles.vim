@@ -58,6 +58,7 @@ Bundle 'vim-php/tagbar-phpctags.vim'
 "Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
+Plugin 'bling/vim-airline'
 
 "-------------
 " Other Utils
