@@ -63,7 +63,7 @@ else
     set fileencoding=utf-8                    "强制将文件编码转为utf8
     set encoding=utf-8                        "当前终端输入的编码
 endif
-set statusline=%<%{GetCwd()}/%f\ %{HasPaste()}\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l行,%c%V列%)\ 共%L行\ %P
+set statusline=%<%{GetCwd()}%f\ %{HasPaste()}\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l行,%c%V列%)\ 共%L行\ %P
 function! HasPaste()
     if &paste
         return '  [粘贴模式]  '
@@ -74,7 +74,7 @@ function! GetCwd()
     if exists("g:proj_running")
         return ''
     en
-        return getcwd()
+        return getcwd()."/"
 endfunction
 "设置在状态行显示的信息如下：
 "%f 当前的文件名
