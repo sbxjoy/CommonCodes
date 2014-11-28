@@ -1,15 +1,31 @@
 source ~/.vim/bundles.vim
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
-
-"ack
-let g:syntastic_css_checkers = ['prettycss']
-
-nmap <leader>x <plug>NERDCommenterToggle
-xmap <leader>x <plug>NERDCommenterToggle
-let NERDCompactSexyComs=1
-
-
 set nocompatible                              "关闭VI兼容模式
+
+"ack"{{{
+let g:syntastic_css_checkers = ['prettycss'] "}}}
+
+"光标所在行和列高亮"{{{
+set cursorline cursorcolumn                   "高亮光标所在行和列
+au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在的行和列
+au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮"}}}
+
+"搜索设置"{{{
+set hlsearch                                  "搜索高亮
+set incsearch                                 "搜索追踪
+set ignorecase                                "忽略大小写$
+set smartcase                                 "当查询串中有至少一个大写字母时对大小写敏感
+set report=0                                  "显示被替换的次数
+"}}}
+
+"缩进设置"{{{
+set smartindent                               "智能缩进
+set tabstop=4                                 "缩进量
+set shiftwidth=4                              "缩进值，用<<和>>的缩进量
+set expandtab                                 "把制表符换为空格
+"}}}
+
+"系统设置"{{{
 set t_Co=256                                  "256位色模式
 colorscheme molokai                           "配色方案
 set nobackup                                  "关闭自动备份
@@ -17,16 +33,8 @@ set mouse=                                    "关闭鼠标
 set helplang=cn                               "帮助文档语言
 syntax on                                     "语法高亮
 "set autochdir                                 "自动将pwd切换为当前文件所在的目录
-set hlsearch                                  "搜索高亮
-set incsearch                                 "搜索追踪
-set ignorecase                                "忽略大小写$
-set smartcase                                 "当查询串中有至少一个大写字母时对大小写敏感
 set backspace=indent,start                    "允许用退格符删除回车符
-set smartindent                               "智能缩进
 set autoindent                                "自动对齐
-set expandtab                                 "把制表符换为空格
-set tabstop=4                                 "缩进量
-set shiftwidth=4                              "缩进值，用<<和>>的缩进量
 set list                                      "显示特殊字符
 set listchars=tab:>-,eol:$                    "需要显示的特殊字符，tab显示为>----,换行显示为$
 set ambiwidth=double                          "把所有的不明宽度字符的宽度设为两个字符
@@ -39,20 +47,16 @@ set showmatch                                 "显示对应的半个括号位置
 set nu                                        "显示行号
 set wrap                                      "自动折行
 set showmode                                  "在左下角显示当前模式
-set cursorline cursorcolumn                   "高亮光标所在行和列
-au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在的行和列
-au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮
-set laststatus=2                              "始终显示状态栏
 set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
-set completeopt=preview,menu                  "自动补全时出最长无分歧的字符串和menu列表
 set history=100                               "保留1000次历史
 set showcmd                                   "在右下角显示当前已输入但还未执行的命令
 set confirm                                   "关闭未保存的文件时提示
-set iskeyword+=$,%,#,-                        "碰到这些字符是时候仍然认为是一个词
-set report=0                                  "显示被替换的次数
+"set iskeyword+=$,%,#,-                        "碰到这些字符是时候仍然认为是一个词
 set matchpairs+=<:>                           "添加对html的括号匹配
+set pastetoggle=<F12> "F12作为粘贴模式的转换键
+"}}}
 
-"文件编码相关的设置
+"文件编码相关的设置"{{{
 set fileencodings=utf-8,chinese               "文件编码扫描类型
 if has ('win32')
     set fileencoding=chinese                  "windows下默认的文件编码为gbk
@@ -63,47 +67,114 @@ else
     set fileencoding=utf-8                    "强制将文件编码转为utf8
     set encoding=utf-8                        "当前终端输入的编码
 endif
-set statusline=%<%{GetCwd()}%f\ %{HasPaste()}\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l行,%c%V列%)\ 共%L行\ %P
-function! HasPaste()
+"}}}
+
+"状态行 "{{{
+set laststatus=2                              "始终显示状态栏
+hi StatuslineBufNr     cterm=none    ctermfg=black  ctermbg=cyan    gui=none guibg=#840c0c guifg=#ffffff
+hi StatuslineFlag      cterm=none    ctermfg=black  ctermbg=cyan    gui=none guibg=#bc5b4c guifg=#ffffff
+hi StatuslinePath      cterm=none    ctermfg=black  ctermbg=green   gui=none guibg=#8d6c47 guifg=black
+hi StatuslineFileName  cterm=none    ctermfg=white  ctermbg=blue    gui=none guibg=#d59159 guifg=black
+hi StatuslineFileEnc   cterm=none    ctermfg=black  ctermbg=yellow  gui=none guibg=#ffff77 guifg=black
+hi StatuslineFileType  cterm=bold    ctermbg=black  ctermfg=black   gui=none guibg=#acff84 guifg=black
+hi StatuslineTermEnc   cterm=none    ctermbg=white  ctermfg=yellow  gui=none guibg=#77cf77 guifg=black
+hi StatuslineChar      cterm=none    ctermbg=white  ctermfg=yellow  gui=none guibg=#66b06f guifg=black
+hi StatuslineSyn       cterm=none    ctermbg=white  ctermfg=yellow  gui=none guibg=#60af9f guifg=black
+hi StatuslineRealSyn   cterm=none    ctermbg=white  ctermfg=yellow  gui=none guibg=#5881b7 guifg=black
+hi StatusLine          cterm=none    ctermbg=white  ctermfg=yellow  gui=none guibg=#3f4d77 guifg=#729eb0
+hi StatuslineTime      cterm=none    ctermfg=black  ctermbg=cyan    gui=none guibg=#3a406e guifg=#000000
+hi StatuslineSomething cterm=reverse ctermfg=white  ctermbg=darkred gui=none guibg=#c0c0f0 guifg=black
+hi StatusLine      ctermfg=238 ctermbg=253
+hi StatusLineNC    cterm=reverse ctermfg=244 ctermbg=232 gui=none guibg=#304050 guifg=#70a0a0
+hi StatusLinePaste ctermfg=231 ctermbg=160 cterm=bold guifg=#ffffff guibg=#d70000 gui=bold
+set statusline=%<
+set statusline+=%#StatuslineBufNr#%{InputStatus()}
+set statusline+=%#StatuslinePaste#%{HasPaste()}
+set statusline+=%#Pl16005f0094afd700b#%r
+set statusline+=%#Plfcd0d0d0f0585858N#%{GetFilepath('full')}%#Ple7fffffff0585858b#%t\ 
+set statusline+=%#StatuslineNC#\ %h%m\ %=
+set statusline+=%#StatuslineNC#\ %=
+set statusline+=%#StatuslineFileType#\ %y\ 
+set statusline+=%#StatuslineFileEnc#\ [%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ 
+set statusline+=%#StatuslineNC#\ %-14.(%l行,%c列%)\ 共%L行\ %p%%
+function! GetFilepath(path_style) "{{{
+    " Recalculate the filepath when cwd changes.
+    let cwd = getcwd()
+
+    let dirsep = has('win32') && ! &shellslash ? '\' : '/'
+    let filepath = expand('%:p')
+
+    if empty(filepath)
+        return ''
+    endif
+
+    let ret = ''
+
+    if a:path_style == 'short'
+        " Display a short path where the first directory is displayed with its
+        " full name, and the subsequent directories are shortened to their
+        " first letter, i.e. "/home/user/foo/foo/bar/baz.vim" becomes
+        " "~/foo/f/b/baz.vim"
+        "
+        " This displays the shortest possible path, relative to ~ or the
+        " current directory.
+        let mod = (exists('+acd') && &acd) ? ':~:h' : ':~:.:h'
+        let fpath = split(fnamemodify(filepath, mod), dirsep)
+        let fpath_shortparts = map(fpath[1:], 'v:val[0]')
+        let ret = join(extend([fpath[0]], fpath_shortparts), dirsep) . dirsep
+    elseif a:path_style == 'relative'
+        " Display a relative path, similar to the %f statusline item
+        let ret = fnamemodify(filepath, ':~:.:h') . dirsep
+    elseif a:path_style == 'full'
+        " Display the full path, similar to the %F statusline item
+        let ret = fnamemodify(filepath, ':h') . dirsep
+    endif
+
+    if ret == ('.' . dirsep)
+        let ret = ''
+    endif
+
+    return ret
+endfunction " }}}
+function! InputStatus() " {{{
+    let mode = mode()
+    let paste = ''
+    if mode =~# '\v(v|V|)'
+        let mode = '可视' " Visual mode
+    elseif mode =~# '\v(s|S|)'
+        let mode = '选择' " Select mode
+    elseif mode =~# '\vi'
+        let mode = '插入' " Insert mode
+    elseif mode =~# '\v(R|Rv)'
+        let mode = '改写' " Replace mode
+    else
+        " Fallback to normal mode
+        let mode = '普通' " Normal (current)
+    endif
+    return '['.l:mode.']'
+endfunction " }}}
+function! HasPaste() "{{{
     if &paste
-        return '  [粘贴模式]  '
+        return '[粘贴]'
     en
     return ''
-endfunction
-function! GetCwd()
-    if exists("g:proj_running")
-        return ''
-    en
-        return getcwd()."/"
-endfunction
-"设置在状态行显示的信息如下：
-"%f 当前的文件名
-"%F 当前全路径文件名
-"%m 当前文件修改状态
-"%r 当前文件是否只读
-"%Y 当前文件类型
-"%{&fileformat} 当前文件编码
-"%{&fileencoding} 中文编码
-"%b 当前光标处字符的 ASCII 码值
-"%B 当前光标处字符的十六进制值
-"%l 当前光标行号
-"%c 当前光标列号
-"%V 当前光标虚拟列号 (根据字符所占字节数计算)
-"%p 当前行占总行数的百分比
-"%% 百分号
-"%L 当前文件总行数
+endfunction "}}}
+"}}}
 
-
-"Cscope插件
+"Cscope插件"{{{
 set nocscopeverbose                           "如果找Cscope数据库失败时，不要报错
 nmap <leader>f :cs find t <C-R>=expand("<cword>")<CR><CR>
+"F3 重建cscope数据库
+map <silent> <F3> <ESC> :!find ./src -name '*.php' > cscope.files ; cscope -bkq -i cscope.files<CR>
+"}}}
 
-"自动补全
+"自动补全"{{{
+set completeopt=preview,menu                  "自动补全时出最长无分歧的字符串和menu列表
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-N>"
-"let g:SuperTabDefaultCompletionType="context"
+"}}}
 
-"选择快捷键组
+"选择快捷键组"{{{
 map vi' <Esc>?'<CR>lv/'<CR>h
 map vi" <Esc>?"<CR>lv/"<CR>h
 map va' <Esc>?'<CR>v/'<CR>
@@ -116,23 +187,16 @@ map vt' <ESC>v/'<CR>h
 map vt" <ESC>v/"<CR>h
 map vt; <ESC>v/;<CR>h
 map vt, <ESC>v/,<CR>h
-map vt} <ESC>v/}<CR>h
+map vt} <ESC>v/}<CR>h"}}}
 
-" 在插入模式下使用光标移动指令 'C'代表Ctrl键
+" 在插入模式下使用光标移动指令"{{{
 " 需要修改xshell的keyboard配置Backspace为ASCII 127
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
-inoremap <C-l> <Right>
+inoremap <C-l> <Right>"}}}
 
-"用q呼起project插件
-nmap <silent> q <Plug>ToggleProject
-
-"调整窗口高度
-map <silent> + :res +3<CR>
-map <silent> _ :res -3<CR>
-
-"php文件的特殊设置
+"php文件的特殊设置"{{{
 autocmd FileType php :call PhpKeys()
 function! PhpKeys()
     "php文件的缩进
@@ -143,8 +207,9 @@ function! PhpKeys()
     vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
     vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
 endfunction
+"}}}
 
-"多标签，感觉没什么太大用处
+"多标签"{{{
 if v:version >= 700
     :map <C-w>p :tabprevious<cr>
     :map <C-w>n :tabnext<cr>
@@ -152,16 +217,18 @@ if v:version >= 700
     "    :imap <C-w>x <ESC>:tabnext<cr>i
     :nmap <C-w>t :tabnew<cr>
 endif
+"}}}
 
-"第81和101列高亮
+"第81和101列高亮"{{{
 if v:version >=703
     set cc=81,101
 else
     hi ColorColumn ctermbg=red
     au BufNewFile,BufRead *.* match ColorColumn /\%<82v.\%>81v/
 endif
+"}}}
 
-"图形界面设定
+"图形界面设定"{{{
 if has("gui_running")
     if has("win32")
         set guifont=Ubuntu\ Mono:h12        "字体字号
@@ -174,31 +241,12 @@ if has("gui_running")
         set guifont=Ubuntu\ Mono:h12        "字体字号
     endif
 endif
+"}}}
 
-nmap <Leader>n :noh<cr>
-
-
-nmap <silent> <leader>tl A//writen by LX<ESC>
-nmap <silent> <leader>tn o//writen by LX<ESC>
-set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
-"快捷键自动对齐并去掉末尾的空格
-nmap <silent> <F7> msgg=G's :w<CR>
-"F3 重建cscope数据库
-map <silent> <F3> <ESC> :!find ./src -name '*.php' > cscope.files ; cscope -bkq -i cscope.files<CR>
-
+"快速查找"{{{
 nmap <silent> <leader>g :call MyGrep("normal")<CR>
 vmap <silent> <leader>g :call MyGrep("visual")<CR>
-
-set wildignore+=*.log*,*.svn
-set wildignore+=*.aux,*.out,*.toc " LaTeX intermediate files
-set wildignore+=*.jpg,*.bmp,*.gif " binary images
-set wildignore+=*.luac " Lua byte code
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
-set wildignore+=*.pyc " Python byte code
-set wildignore+=*.spl " compiled spelling word lists
-set wildignore+=*.sw? " Vim swap files
-
-function! MyGrep(mode)
+function! MyGrep(mode) "{{{
     if !exists('g:proj_running')
         let l:files = '%'
     else
@@ -212,4 +260,40 @@ function! MyGrep(mode)
     endif
     execute "vimgrep /". l:word ."/j ". l:files
     exec 'cw'
-endfunction
+endfunction "}}}
+"}}}
+
+"自动补全忽略的文件"{{{
+set wildignore+=*.log*,*.svn
+set wildignore+=*.aux,*.out,*.toc " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif " binary images
+set wildignore+=*.luac " Lua byte code
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.pyc " Python byte code
+set wildignore+=*.spl " compiled spelling word lists
+set wildignore+=*.sw? " Vim swap files
+"}}}
+
+"通用快捷键"{{{
+"用q呼起project插件
+nmap <silent> q <Plug>ToggleProject
+"用F6呼起Tagbar插件
+nmap <silent> <F6> :TagbarToggle<CR>
+"快捷键自动对齐并去掉末尾的空格
+nmap <silent> <F7> msgg=G's :w<CR>
+"快捷键取消高亮
+nmap <Leader>n :noh<cr>
+"注释快捷键"{{{
+nmap <leader>x <plug>NERDCommenterToggle
+xmap <leader>x <plug>NERDCommenterToggle
+let NERDCompactSexyComs=1 
+"}}}
+"快捷键添加注释"{{{
+nmap <silent> <leader>tl A//writen by LX<ESC>
+nmap <silent> <leader>tn o//writen by LX<ESC>
+"}}}
+"调整窗口高度"{{{
+map <silent> + :res +3<CR>
+map <silent> _ :res -3<CR>
+"}}}
+"}}}

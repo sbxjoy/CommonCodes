@@ -3,5 +3,5 @@ if [ $# = 1 ]
 then
     vim +"Project $1"
 else
-    vim +Tagbar +"Project .prjide"
+    vim +"Project .prjide"
 fi
