@@ -2,6 +2,11 @@ source ~/.vim/bundles.vim
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 set nocompatible                              "关闭VI兼容模式
 
+"airline"{{{
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+"}}}
+
 "ack"{{{
 let g:syntastic_css_checkers = ['prettycss'] "}}}
 
@@ -53,7 +58,8 @@ set showcmd                                   "在右下角显示当前已输入
 set confirm                                   "关闭未保存的文件时提示
 "set iskeyword+=$,%,#,-                        "碰到这些字符是时候仍然认为是一个词
 set matchpairs+=<:>                           "添加对html的括号匹配
-set pastetoggle=<F12> "F12作为粘贴模式的转换键
+set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
+set laststatus=2                              "始终显示状态栏
 "}}}
 
 "文件编码相关的设置"{{{
@@ -68,8 +74,6 @@ else
     set encoding=utf-8                        "当前终端输入的编码
 endif
 "}}}
-
-set laststatus=2                              "始终显示状态栏
 
 "Cscope插件"{{{
 set nocscopeverbose                           "如果找Cscope数据库失败时，不要报错
@@ -196,7 +200,7 @@ nmap <Leader>n :noh<cr>
 "注释快捷键"{{{
 nmap <leader>x <plug>NERDCommenterToggle
 xmap <leader>x <plug>NERDCommenterToggle
-let NERDCompactSexyComs=1 
+let NERDCompactSexyComs=1
 "}}}
 "快捷键添加注释"{{{
 nmap <silent> <leader>tl A//writen by LX<ESC>

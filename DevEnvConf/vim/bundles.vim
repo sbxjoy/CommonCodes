@@ -12,10 +12,10 @@ Bundle 'gmarik/vundle'
 " Code Completions
 "------------------
 "强大的自动补全
-"Bundle 'Shougo/neocomplcache' 
+"Bundle 'Shougo/neocomplcache'
 "Bundle 'honza/vim-snippets'
 "这个不用说了吧
-Bundle 'ervandew/supertab' 
+Bundle 'ervandew/supertab'
 " Bundle 'mattn/zencoding-vim'
 " Bundle 'Valloric/YouCompleteMe'
 " Bundle 'Raimondi/delimitMate'
@@ -37,9 +37,9 @@ Bundle 'vim-scripts/Pydiction'
 "--------------
 "Bundle 'tpope/vim-surround'
 "快捷注释
-Bundle 'scrooloose/nerdcommenter' 
+Bundle 'scrooloose/nerdcommenter'
 "树状显示撤消列表
-"Bundle 'sjl/gundo.vim' 
+"Bundle 'sjl/gundo.vim'
 "Bundle 'godlygeek/tabular'
 "Bundle 'nathanaelkane/vim-indent-guides'
 
@@ -52,8 +52,8 @@ Bundle 'jlanzarotta/bufexplorer'
 "Bundle 'humiaozuzu/TabBar'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-php/tagbar-phpctags.vim'
-"Bundle 'mileszs/ack.vim'
-"Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
+Bundle 'kien/ctrlp.vim'
 "Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
