@@ -12,7 +12,11 @@ Bundle 'gmarik/vundle'
 " Code Completions
 "------------------
 "强大的自动补全
-"Bundle 'Shougo/neocomplcache'
+if v:version >= 704 && has('lua')
+    Plugin 'Shougo/neocomplete.vim'
+else
+    Plugin 'Shougo/neocomplcache.vim'
+endif
 "Bundle 'honza/vim-snippets'
 "这个不用说了吧
 Bundle 'ervandew/supertab'
@@ -42,13 +46,14 @@ Bundle 'scrooloose/nerdcommenter'
 "Bundle 'sjl/gundo.vim'
 "Bundle 'godlygeek/tabular'
 "Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'terryma/vim-expand-region'
 
 "--------------
 " IDE features
 "--------------
 Bundle 'vim-scripts/project.tar.gz'
 Bundle 'jlanzarotta/bufexplorer'
-"Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdtree'
 "Bundle 'humiaozuzu/TabBar'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-php/tagbar-phpctags.vim'

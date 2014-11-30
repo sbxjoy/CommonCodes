@@ -2,13 +2,28 @@ source ~/.vim/bundles.vim
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 set nocompatible                              "关闭VI兼容模式
 
+let g:neocomplcache_enable_at_startup = 1
 "airline"{{{
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 "}}}
 
-"ack"{{{
+"syntastic "{{{
 let g:syntastic_css_checkers = ['prettycss'] "}}}
+
+"vim-expand-region"{{{
+map L <Plug>(expand_region_expand)
+map H <Plug>(expand_region_shrink)
+call expand_region#custom_text_objects({
+            \ "\/\\n\\n\<CR>": 1,
+            \ 'a]' :1,
+            \ 'ab' :1,
+            \ 'i''' :1,
+            \ 'aB' :1,
+            \ 'ii' :0,
+            \ 'ai' :0,
+            \ })
+"}}}
 
 "光标所在行和列高亮"{{{
 set cursorline cursorcolumn                   "高亮光标所在行和列
@@ -125,11 +140,9 @@ endfunction
 
 "多标签"{{{
 if v:version >= 700
-    :map <C-w>p :tabprevious<cr>
-    :map <C-w>n :tabnext<cr>
-    "    :imap <C-w>p <ESC>:tabprevious<cr>i
-    "    :imap <C-w>x <ESC>:tabnext<cr>i
-    :nmap <C-w>t :tabnew<cr>
+    map <C-w>p :tabprevious<cr>
+    map <C-w>n :tabnext<cr>
+    nmap <C-w>t :tabnew<cr>
 endif
 "}}}
 
