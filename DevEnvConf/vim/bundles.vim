@@ -20,7 +20,7 @@ endif
 "Bundle 'honza/vim-snippets'
 "这个不用说了吧
 Bundle 'ervandew/supertab'
-Plugin 'altercation/vim-colors-solarized'
+"Plugin 'altercation/vim-colors-solarized'
 " Bundle 'mattn/zencoding-vim'
 " Bundle 'Valloric/YouCompleteMe'
 " Bundle 'Raimondi/delimitMate'
@@ -35,7 +35,7 @@ Bundle 'vim-scripts/Pydiction'
 " Fast navigation
 "-----------------
 "Bundle 'tsaleh/vim-matchit'
-"Bundle 'Lokaltog/vim-easymotion'
+Bundle 'Lokaltog/vim-easymotion'
 
 "--------------
 " Fast editing
@@ -47,6 +47,7 @@ Bundle 'scrooloose/nerdcommenter'
 "Bundle 'sjl/gundo.vim'
 "Bundle 'godlygeek/tabular'
 "Bundle 'nathanaelkane/vim-indent-guides'
+"选择引号内部的字符串
 Plugin 'terryma/vim-expand-region'
 
 "--------------
@@ -54,13 +55,13 @@ Plugin 'terryma/vim-expand-region'
 "--------------
 Bundle 'vim-scripts/project.tar.gz'
 Bundle 'jlanzarotta/bufexplorer'
-Bundle 'scrooloose/nerdtree'
+"Bundle 'scrooloose/nerdtree'
 "Bundle 'humiaozuzu/TabBar'
 Bundle 'majutsushi/tagbar'
 Bundle 'vim-php/tagbar-phpctags.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'kien/ctrlp.vim'
-"Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-fugitive'
 "Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
