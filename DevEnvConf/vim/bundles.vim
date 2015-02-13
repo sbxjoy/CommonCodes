@@ -20,6 +20,7 @@ endif
 "Bundle 'honza/vim-snippets'
 "这个不用说了吧
 Bundle 'ervandew/supertab'
+Plugin 'altercation/vim-colors-solarized'
 " Bundle 'mattn/zencoding-vim'
 " Bundle 'Valloric/YouCompleteMe'
 " Bundle 'Raimondi/delimitMate'
@@ -64,6 +65,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
 Plugin 'bling/vim-airline'
+Plugin 'DoxygenToolkit.vim'
 
 "-------------
 " Other Utils
