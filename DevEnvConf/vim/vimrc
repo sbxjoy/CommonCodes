@@ -37,6 +37,7 @@ call expand_region#custom_text_objects({
             \ })
 "}}}
 
+"vim-fugitive"{{{
  if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
      nnoremap <silent> <leader>gs :Gstatus<CR>
      nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -51,6 +52,7 @@ call expand_region#custom_text_objects({
       nnoremap <silent> <leader>gi :Git add -p %<CR>
       nnoremap <silent> <leader>gg :SignifyToggle<CR>
 endif
+"}}}
 
 "光标所在行和列高亮"{{{
 set cursorline cursorcolumn                   "高亮光标所在行和列
@@ -250,6 +252,8 @@ nmap <silent> <leader>tn o//writen by LX<ESC>
 map <silent> + :res +3<CR>
 map <silent> _ :res -3<CR>
 "}}}
+"修改文件编码为unix
+nmap <silent> <Leader>u :set fileformat=unix<cr>
 "}}}
 
 map <Leader>c :call UpdateTime()<cr>
