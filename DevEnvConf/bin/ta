@@ -1,0 +1,19 @@
+#!/bin/bash
+res=`tmux list-sessions`
+if [ $? = 1 ]
+then
+    tmux -2
+    exit;
+fi
+row=`echo "$res" | wc -l`
+if [ $row = 1 ]
+then
+    tmux -2 a
+    exit;
+fi
+if [ $1 ]
+then
+    tmux -2 a -t $1
+    exit;
+fi
+echo "$res"
