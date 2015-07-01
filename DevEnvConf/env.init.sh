@@ -9,7 +9,7 @@ echo $project_home
 #创建一些目录
 #backup, backup/vim vim的backup目录
 #bin 当前用户的bin目录，放一些需要用的工具
-dirs="$HOME/backup $HOME/backup/vim"
+dirs="$HOME/backup $HOME/backup/vim $HOME/backup/vim/_undodir"
 for dir in $dirs
 do
     if test -d $dir
