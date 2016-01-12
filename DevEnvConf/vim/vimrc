@@ -2,9 +2,14 @@ set nocompatible                              "关闭VI兼容模式
 source ~/.vim/bundles.vim
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 
+"ack "{{{
+let g:ack_default_options = ' -s -H --nocolor --nogroup --column --ignore-dir=logs '
+"}}}
+
 "ctrlp"{{{
 let g:ctrlp_working_path_mode = 'raw'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:10,max:10,results:10'
+let g:ctrlp_open_new_file = 'r'
 let g:ctrlp_open_multiple_files = 'v'
 let g:ctrlp_arg_map = 1
 "}}}
@@ -187,6 +192,12 @@ endif
 
 "图形界面设定"{{{
 if has("gui_running")
+    set guioptions-=m " 隐藏菜单栏
+    set guioptions-=T " 隐藏工具栏
+    set guioptions-=L " 隐藏左侧滚动条
+    set guioptions-=r " 隐藏右侧滚动条
+    set guioptions-=b " 隐藏底部滚动条
+    set showtabline=0 " 隐藏Tab栏
     if has("win32")
         set guifont=Ubuntu\ Mono:h12        "字体字号
         autocmd GUIEnter * simalt ~x        "windows 下 gvim 启动时最大化
@@ -251,8 +262,9 @@ xmap <leader>x <plug>NERDCommenterToggle
 let NERDCompactSexyComs=1
 "}}}
 "快捷键添加注释"{{{
-nmap <silent> <leader>tl A//writen by LX<ESC>
-nmap <silent> <leader>tn o//writen by LX<ESC>
+nmap <silent> <leader>tl A//written by LX<ESC>
+nmap <silent> <leader>tn o//written by LX<ESC>
+nmap <silent> <leader>p a<?php  ?><ESC>2hi
 "}}}
 "调整窗口高度"{{{
 map <silent> + :res +3<CR>

@@ -67,6 +67,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
 Plugin 'bling/vim-airline'
 Plugin 'DoxygenToolkit.vim'
+Bundle 'Yggdroot/indentLine'
 
 "-------------
 " Other Utils
