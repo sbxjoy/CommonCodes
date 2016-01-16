@@ -156,7 +156,7 @@ fi
 cnt=$(cat $profile_path | grep $bashmarks_path | wc -l)
 if [ $cnt -eq 0 ]
 then
-    echo -e "\n. $bashmarks_path\n" >> $profile_path
+    echo -e "\n. $bashmarks_path/bashmarks.sh\n" >> $profile_path
     printf "%-80s" "$bashmarks_path 配置完成"
     cecho "[OK]" $green
 else

@@ -41,5 +41,3 @@ if [[ $PATH != *$HOME/bin* ]]
 then
     PATH="$HOME/bin:$PATH"
 fi
-
-. $HOME/archives/bashmarks/bashmarks.sh
