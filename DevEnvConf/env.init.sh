@@ -109,6 +109,8 @@ cecho "vim配置完成\n"
 
 cecho "\n开始配置shell"
 #bin 目录的创建和检查
+profile_path=$HOME/.bash_profile
+
 link_path $project_home/bin $HOME/bin
 flag=$?
 if [ $flag -eq 0 ] || [ $flag -eq 1 ]
@@ -121,28 +123,49 @@ else
 fi
 
 own_profile_path=$project_home/bash_profile
-profile_path=$HOME/.bash_profile
 cnt=$(cat $profile_path | grep $own_profile_path | wc -l)
 if [ $cnt -eq 0 ]
 then
     echo -e "\n\n#lx's own bash\n. $own_profile_path\n" >> $profile_path
     printf "%-80s" "$own_profile_path 配置完成"
+    cecho "[OK]" $green
 else
     printf "%-80s" "$own_profile_path 已配置"
     cecho "[OK]" $yellow
 fi
 
-if [ ! -d $project_home/bashmarks ]
+bashmarks_path=$project_home/bashmarks
+if [ ! -d $bashmarks_path ]
 then
-    git clone --progress https://github.com/huyng/bashmarks.git $project_home/bashmarks
+    git clone --progress https://github.com/huyng/bashmarks.git $bashmarks_path
 else
     printf "%-80s\t" "bashmarks 目录已存在！"
     cecho "[OK]" $yellow
+    pushd $bashmarks_path
+    git pull
+    if [ $? == 0 ]
+    then
+        printf "%-80s\t" "bashmarks 更新完成！"
+        cecho "[OK]" $green
+    else
+        printf "%-80s\t" "bashmarks 更新出错！"
+        cecho "[WARNING]" $yellow
+    fi
+    popd
+fi
+cnt=$(cat $profile_path | grep $bashmarks_path | wc -l)
+if [ $cnt -eq 0 ]
+then
+    echo -e "\n. $bashmarks_path\n" >> $profile_path
+    printf "%-80s" "$bashmarks_path 配置完成"
+    cecho "[OK]" $green
+else
+    printf "%-80s" "$bashmarks_path 已配置"
+    cecho "[OK]" $yellow
 fi
 
-cecho "shell配置完成\n"
 
-exit;
+cecho "shell配置完成\n"
 
 # cron脚本安装
 crontab -l > /tmp/curr.cron
