@@ -1,0 +1,45 @@
+#!/bin/bash
+function pcol { #{{{
+    awk -v col=$1 '{print $col}'
+} #}}}
+
+function msum { #{{{
+    awk -v col=$1 'BEGIN {sum = 0 }{ sum = sum + $col} END {print sum}'
+} #}}}
+
+function vj { #{{{
+    if [ $# = 1 ]
+    then
+        vim +"Project $1"
+    else
+        vim +"Project .prjide"
+    fi
+} #}}}
+
+function ta { #{{{
+    res=`tmux list-sessions`
+    if [ $? = 1 ]
+    then
+        tmux -2
+    fi
+    row=`echo "$res" | wc -l`
+    if [ $row = 1 ]
+    then
+        tmux -2 a
+    fi
+    if [ $1 ]
+    then
+        tmux -2 a -t $1
+    fi
+    echo "$res"
+} #}}}
+
+alias tmux="tmux -2"
+alias ack="ack-grep"
+
+if [[ $PATH != *$HOME/bin* ]]
+then
+    PATH="$HOME/bin:$PATH"
+fi
+
+. $HOME/archives/bashmarks/bashmarks.sh

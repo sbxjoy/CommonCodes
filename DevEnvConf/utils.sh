@@ -158,17 +158,20 @@ link_path()
 {
     source_path=$1
     dest_path=$2
-    if ([ -L $dest_path ]) || ([ -e $dest_path ])
+    if ([ ! -e $dest_path ])
     then
-        confirm " $dest_path 已经存在，替换吗？"
-        if [ $? == '1' ]
-        then
-            rm -fr $dest_path
-            ln -sfn $source_path $dest_path
-        else
-            cecho "未处理 $dest_path" $yellow
-        fi
-    else
         ln -sfn $source_path $dest_path
+        return 0;
     fi
+    confirm " $dest_path 已经存在，替换吗？"
+    if [ $? == '1' ]
+    then
+        rm -fr $dest_path
+        ln -sfn $source_path $dest_path
+        return 1;
+    else
+        cecho "未处理 $dest_path" $yellow
+        return 2;
+    fi
+    return 0;
 }
