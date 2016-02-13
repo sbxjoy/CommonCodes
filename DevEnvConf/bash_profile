@@ -8,11 +8,11 @@ function msum { #{{{
 } #}}}
 
 function vj { #{{{
-    if [ $# = 1 ]
+    if [ -e in.vim ]
     then
-        vim +"Project $1"
+        vim -c "so in.vim"
     else
-        vim +"Project .prjide"
+        vim
     fi
 } #}}}
 

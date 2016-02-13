@@ -35,7 +35,11 @@ Bundle 'vim-scripts/Pydiction'
 " Fast navigation
 "-----------------
 "Bundle 'tsaleh/vim-matchit'
+"这几个是一家子，easymotion的增强
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'haya14busa/incsearch.vim'
+Bundle 'haya14busa/incsearch-easymotion.vim'
+Bundle 'haya14busa/incsearch-fuzzy.vim'
 
 "--------------
 " Fast editing
@@ -45,7 +49,9 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdcommenter'
 "树状显示撤消列表
 "Bundle 'sjl/gundo.vim'
-"Bundle 'godlygeek/tabular'
+"按照某个符号对齐
+Bundle 'godlygeek/tabular'
+"显示缩进对齐线
 "Bundle 'nathanaelkane/vim-indent-guides'
 "选择引号内部的字符串
 Plugin 'terryma/vim-expand-region'
@@ -67,7 +73,9 @@ Bundle 'scrooloose/syntastic'
 Bundle 'bronson/vim-trailing-whitespace'
 Plugin 'bling/vim-airline'
 Plugin 'DoxygenToolkit.vim'
+"显示缩进对齐线，比vim-indent-guides漂亮
 Bundle 'Yggdroot/indentLine'
+
 
 "-------------
 " Other Utils
