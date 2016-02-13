@@ -214,9 +214,11 @@ inoremap <C-l> <Right>
 autocmd FileType php :call PhpKeys()
 function! PhpKeys()
     "php文件的缩进
-    "    let php_folding=1
-    "    set foldmethod=syntax
-    set dictionary+=~/.vim/doc/php_funclist.txt
+    "let php_folding=1
+    "set foldmethod=syntax
+    "添加了php.vim插件支持php语法和自动补全，不再使用php_funclist
+    "文件及配置暂时保留
+    "set dictionary+=~/.vim/doc/php_funclist.txt
     set complete+=k
     vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
     vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
@@ -339,5 +341,8 @@ set undofile
 set undodir=~/backup/vim/\_undodir
 set undolevels=1000 "maximum number of changes that can be undone
 "}}}
+
+
+
 
 

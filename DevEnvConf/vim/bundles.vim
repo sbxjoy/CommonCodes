@@ -89,6 +89,7 @@ Bundle 'Yggdroot/indentLine'
 "----------------------------------------
 "------- web backend ---------
 Bundle '2072/PHP-Indenting-for-VIm'
+Plugin 'shawncplus/phpcomplete.vim'
 "Bundle 'tpope/vim-rails'
 "Bundle 'lepture/vim-jinja'
 "Bundle 'digitaltoad/vim-jade'
@@ -103,6 +104,7 @@ Bundle '2072/PHP-Indenting-for-VIm'
 " Bundle 'wavded/vim-stylus'
 " Bundle 'nono/vim-handlebars'
 "Bundle 'vim-scripts/phpfolding.vim'
+"Bundle 'StanAngeloff/php.vim'
 
 "------- markup language -------
 "Bundle 'tpope/vim-markdown'
