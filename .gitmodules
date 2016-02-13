@@ -76,3 +76,6 @@
 [submodule "DevEnvConf/bashmarks"]
 	path = DevEnvConf/bashmarks
 	url = https://github.com/huyng/bashmarks.git
+[submodule "Favpic"]
+	path = Favpic
+	url = https://github.com/sbxjoy/Favpic.git
