@@ -1,5 +1,7 @@
 set nocompatible                              "关闭VI兼容模式
-source ~/.vim/bundles.vim
+if !has('win32')
+    source ~/.vim/bundles.vim
+endif
 filetype plugin indent on                     "自动识别文件类型，用文件类型的plugin脚本，用对应的缩进定义
 
 "ack "{{{
