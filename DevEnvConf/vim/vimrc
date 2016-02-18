@@ -6,7 +6,16 @@ filetype plugin indent on                     "自动识别文件类型，用文
 let g:ack_default_options = ' -s -H --nocolor --nogroup --column --ignore-dir=logs '
 "}}}
 
-"ctrlp"{{{
+"airline及状态栏设置 "{{{
+let g:airline_left_sep='>'
+let g:airline_right_sep='<'
+set laststatus=2                              "始终显示状态栏
+set showmode                                  "在左下角显示当前模式
+set ruler                                     "在右下角显示当前光标位置
+set showcmd                                   "在右下角显示当前已输入但还未执行的命令
+"}}}
+
+"ctrlp "{{{
 let g:ctrlp_working_path_mode = 'raw'
 let g:ctrlp_match_window = 'bottom,order:ttb,min:10,max:10,results:1000'
 let g:ctrlp_open_new_file = 'r'
@@ -14,46 +23,8 @@ let g:ctrlp_open_multiple_files = 'v'
 let g:ctrlp_arg_map = 1
 "}}}
 
-"neocomplcache"{{{
-let g:neocomplcache_enable_at_startup = 1
-
-"}}}
-
-"airline"{{{
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-"}}}
-
-"syntastic "{{{
-let g:syntastic_css_checkers = ['prettycss']
-"}}}
-
-"vim-expand-region"{{{
-map L <Plug>(expand_region_expand)
-map H <Plug>(expand_region_shrink)
-call expand_region#custom_text_objects({
-            \ "\/\\n\\n\<CR>": 1,
-            \ 'a]' :1,
-            \ 'ab' :1,
-            \ 'a''' :1,
-            \ 'aB' :1,
-            \ 'ii' :0,
-            \ 'ai' :0,
-            \ })
-"}}}
-
-"vim-fugitive"{{{
-if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-    nnoremap <silent> <leader>gr :Gread<CR>
-    nnoremap <silent> <leader>gw :Gwrite<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-endif
+"DoxygenToolkit "{{{
+let g:DoxygenToolkit_authorName="吕翔<lx_kkudng@163.com>"
 "}}}
 
 "easy-motion "{{{
@@ -81,18 +52,14 @@ endfunction
 noremap <silent><expr> <leader><leader>f incsearch#go(<SID>config_easyfuzzymotion())
 "}}}
 
-"DoxygenToolkit "{{{
-let g:DoxygenToolkit_authorName="吕翔<lx_kkudng@163.com>"
-"}}}
-
-"tabular "{{{
-vmap <leader>t= :Tabularize /=<CR>
-vmap <leader>t? :Tabularize /
-"}}}
-
-"indentLine "{{{
+"indentLine及自动对齐设置 "{{{
 "将对齐线的颜色改为灰色
-let g:indentLine_color_tty_dark = 236
+let g:indentLine_color_tty_dark = 59
+set autoindent                                "自动对齐
+"}}}
+
+"neocomplcache "{{{
+let g:neocomplcache_enable_at_startup = 1
 "}}}
 
 "nerdcommenter "{{{
@@ -101,71 +68,117 @@ xmap <leader>x <plug>NERDCommenterToggle
 let NERDCompactSexyComs=1
 "}}}
 
+"syntastic "{{{
+let g:syntastic_css_checkers = ['prettycss']
+"}}}
+
+"tabular "{{{
+vmap <leader>t- :Tabularize /-<CR>
+vmap <leader>t= :Tabularize /=<CR>
+vmap <leader>t? :Tabularize /
+"}}}
+
+"tagbar "{{{
+"用F6呼起Tagbar插件
+nmap <silent> <F6> :TagbarToggle<CR>
+let g:tagbar_left = 1
+"}}}
+
+"vim-expand-region "{{{
+map L <Plug>(expand_region_expand)
+map H <Plug>(expand_region_shrink)
+call expand_region#custom_text_objects({
+            \ "\/\\n\\n\<CR>": 1,
+            \ 'a]' :1,
+            \ 'ab' :1,
+            \ 'a''' :1,
+            \ 'aB' :1,
+            \ 'ii' :0,
+            \ 'ai' :0,
+            \ })
+"}}}
+
+"vim-fugitive "{{{
+if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
+    nnoremap <silent> <leader>gs :Gstatus<CR>
+    nnoremap <silent> <leader>gd :Gdiff<CR>
+    nnoremap <silent> <leader>gc :Gcommit<CR>
+    nnoremap <silent> <leader>gb :Gblame<CR>
+    nnoremap <silent> <leader>gl :Glog<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gr :Gread<CR>
+    nnoremap <silent> <leader>gw :Gwrite<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
+endif
+"}}}
+
 "vim-trailing-whitespace "{{{
 "自动删除行尾空格
 nnoremap <silent> <F8> :FixWhitespace<CR>
 "}}}
 
-"光标所在行和列高亮"{{{
-set cursorline cursorcolumn                   "高亮光标所在行和列
-au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在的行和列
-au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮"}}}
-
-"搜索设置"{{{
+"搜索设置 "{{{
 set hlsearch                                  "搜索高亮
 set incsearch                                 "搜索追踪
 set ignorecase                                "忽略大小写$
 set smartcase                                 "当查询串中有至少一个大写字母时对大小写敏感
 set report=0                                  "显示被替换的次数
+"普通模式下按<c-l>取消搜索高亮
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 "}}}
 
-"缩进设置"{{{
+"缩进设置 "{{{
 set smartindent                               "智能缩进
 set tabstop=4                                 "缩进量
 set shiftwidth=4                              "缩进值，用<<和>>的缩进量
 set expandtab                                 "把制表符换为空格
 "}}}
 
-"系统设置"{{{
-let mapleader=","                             "将<leader>换为,
+"配色方案相关 "{{{
 set t_Co=256                                  "256位色模式
 colorscheme molokai                           "配色方案
-set nobackup                                  "关闭自动备份
-set mouse=                                    "关闭鼠标
-set helplang=cn                               "帮助文档语言
 syntax on                                     "语法高亮
-"set autochdir                                 "自动将pwd切换为当前文件所在的目录
-set backspace=indent,start                    "允许用退格符删除回车符
-set autoindent                                "自动对齐
+"}}}
+
+"特殊字符设置 "{{{
 set list                                      "显示特殊字符
 set listchars=tab:>-,eol:$                    "需要显示的特殊字符，tab显示为>----, 换行显示为$
 set ambiwidth=double                          "把所有的不明宽度字符的宽度设为两个字符
-set selection=inclusive                       "可视模式下将当前光标所在的字符选中
+"}}}
+
+"光标设置 "{{{
 set so=5                                      "在光标上下各留5行
-set ruler                                     "在右下角显示当前光标位置
+set selection=inclusive                       "可视模式下将当前光标所在的字符选中
+set backspace=indent,start                    "允许用退格符删除回车符
+set cursorline cursorcolumn                   "高亮光标所在行和列
+au WinLeave * set nocursorline nocursorcolumn "进入窗口的时候高亮所在的行和列
+au WinEnter * set cursorline cursorcolumn     "离开窗口的时候取消对光标所在行和列的高亮
+"}}}
+
+"折叠设置 "{{{
 set foldmethod=marker                         "按照折叠符号折叠
 set foldcolumn=2                              "行首显示折叠标识的空格数
+"}}}
+
+"系统设置"{{{
+let mapleader=","                             "将<leader>换为,
+set nobackup                                  "关闭自动备份
+set mouse=                                    "关闭鼠标
+set helplang=cn                               "帮助文档语言
+"set autochdir                                 "自动将pwd切换为当前文件所在的目录
 set showmatch                                 "显示对应的半个括号位置
+set matchpairs+=<:>                           "添加对html的括号匹配
 set nu                                        "显示行号
 set wrap                                      "自动折行
-set showmode                                  "在左下角显示当前模式
 set winaltkeys=no                             "在windows下禁用菜单alt键，使得alt可以使用
-set history=100                               "保留1000次历史
-set showcmd                                   "在右下角显示当前已输入但还未执行的命令
 set confirm                                   "关闭未保存的文件时提示
 "set iskeyword+=$,%,#,-                        "碰到这些字符是时候仍然认为是一个词
-set matchpairs+=<:>                           "添加对html的括号匹配
-set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
-au InsertLeave * set nopaste                  "退出插入模式的时候退出粘贴模式
-set laststatus=2                              "始终显示状态栏
 set visualbell                                "使用显示提醒代替beep响声
 "}}}
 
-"文件编码相关的设置"{{{
+"文件编码相关的设置 "{{{
 set fileencodings=utf-8,chinese               "文件编码扫描类型
 if has ('win32')
-    set fileencoding=chinese                  "windows下默认的文件编码为gbk
-    set encoding=chinese                      "当前终端输入的编码
     set clipboard+=unnamed                    "与windows共享剪切板
     set title
 else
@@ -174,20 +187,20 @@ else
 endif
 "}}}
 
-"Cscope插件"{{{
+"Cscope插件 "{{{
 "set nocscopeverbose                           "如果找Cscope数据库失败时，不要报错
 "nmap <leader>f :cs find t <C-R>=expand("<cword>")<CR><CR>
 "F3 重建cscope数据库
 "map <silent> <F3> <ESC> :!find ./src -name '*.php' > cscope.files ; cscope -bkq -i cscope.files<CR>
 "}}}
 
-"自动补全"{{{
+"自动补全 "{{{
 set completeopt=preview,menu                  "自动补全时出最长无分歧的字符串和menu列表
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-N>"
 "}}}
 
-"选择快捷键组"{{{
+"选择快捷键组 "{{{
 map vi' <Esc>?'<CR>lv/'<CR>h
 map vi" <Esc>?"<CR>lv/"<CR>h
 map va' <Esc>?'<CR>v/'<CR>
@@ -202,7 +215,7 @@ map vt; <ESC>v/;<CR>h
 map vt, <ESC>v/,<CR>h
 map vt} <ESC>v/}<CR>h"}}}
 
-" 在插入模式下使用光标移动指令"{{{
+" 在插入模式下使用光标移动指令 "{{{
 " 需要修改xshell的keyboard配置Backspace为ASCII 127
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
@@ -210,7 +223,7 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 "}}}
 
-"php文件的特殊设置"{{{
+"php文件的特殊设置 "{{{
 autocmd FileType php :call PhpKeys()
 function! PhpKeys()
     "php文件的缩进
@@ -219,14 +232,14 @@ function! PhpKeys()
     "添加了php.vim插件支持php语法和自动补全，不再使用php_funclist
     "文件及配置暂时保留
     "set dictionary+=~/.vim/doc/php_funclist.txt
-    set complete+=k
     vmap <silent> <leader>j yoecho json_encode(<ESC>pa, true);<ESC><CR>
     vmap <silent> <leader>v yovar_dump (<ESC>pa);<ESC><CR>
     nnoremap <F10> :w<CR>:!php %<CR>
+    nnoremap <silent> <leader>p a<?php  ?><ESC>2hi
 endfunction
 "}}}
 
-"多标签"{{{
+"多标签 "{{{
 if v:version >= 700
     map <C-w>p :tabprevious<CR>
     map <C-w>n :tabnext<CR>
@@ -234,7 +247,7 @@ if v:version >= 700
 endif
 "}}}
 
-"第81和101列高亮"{{{
+"第81和101列高亮 "{{{
 if v:version >=703
     set cc=81,101
 else
@@ -249,7 +262,7 @@ nnoremap 0 ^
 nnoremap ^ 0
 "}}}
 
-"图形界面设定"{{{
+"图形界面设定 "{{{
 if has("gui_running")
     set guioptions-=m " 隐藏菜单栏
     set guioptions-=T " 隐藏工具栏
@@ -270,7 +283,12 @@ if has("gui_running")
 endif
 "}}}
 
-"快速查找"{{{
+"粘贴模式 "{{{
+set pastetoggle=<F12>                         "F12作为粘贴模式的转换键
+au InsertLeave * set nopaste                  "退出插入模式的时候退出粘贴模式
+"}}}
+
+"快速查找 "{{{
 nmap <silent> <leader>g :call MyGrep("normal")<CR>
 vmap <silent> <leader>g :call MyGrep("visual")<CR>
 function! MyGrep(mode) "{{{
@@ -285,7 +303,7 @@ function! MyGrep(mode) "{{{
 endfunction "}}}
 "}}}
 
-"自动补全忽略的文件"{{{
+"自动补全忽略的文件 "{{{
 set wildignore+=*.log*,*.svn
 set wildignore+=*.aux,*.out,*.toc " LaTeX intermediate files
 set wildignore+=*.jpg,*.bmp,*.gif " binary images
@@ -297,7 +315,7 @@ set wildignore+=*.sw? " Vim swap files
 set wildignore+=*.min.js,*.min.css,*.css.map
 "}}}
 
-"调整窗口宽高"{{{
+"调整窗口宽高 "{{{
 map <silent> + :res +3<CR>
 map <silent> _ :res -3<CR>
 map <silent> <Up> <C-W>+
@@ -306,13 +324,12 @@ map <silent> <Left> <C-W><
 map <silent> <Right> <C-W>>
 "}}}
 
-"快捷键添加注释"{{{
+"快捷键添加注释 "{{{
 nmap <silent> <leader>tl A//written by LX<ESC>
 nmap <silent> <leader>tn o//written by LX<ESC>
-nmap <silent> <leader>p a<?php  ?><ESC>2hi
 "}}}
 
-"文件格式整理"{{{
+"文件格式整理 "{{{
 "快捷键自动对齐
 nmap <silent> <F7> msgg=G's :w<CR>
 "修改文件编码为unix并去掉^M
@@ -321,28 +338,22 @@ nmap <silent> <Leader>u :set fileformat=unix<CR>:%s/\r/<CR>
 command! -nargs=0 W :w !sudo tee % > /dev/null
 "}}}
 
-"通用快捷键"{{{
+"通用快捷键 "{{{
 "用<F5>呼起project插件
 nmap <silent> <F5> <Plug>ToggleProject
-"用F6呼起Tagbar插件
-nmap <silent> <F6> :TagbarToggle<CR>
 "重新载入vimrc
 nnoremap <F11> :source ~/.vimrc<CR>
 "插入模式下连续两次j为esc
 inoremap jj <esc>
-"普通模式下按<c-l>取消搜索高亮
-nnoremap <silent> <C-l> :nohl<CR><C-l>
 "将Y映射成选中当前位置到行尾
 nmap Y y$
 "}}}
 
-"持久撤消"{{{
+"持久撤消 "{{{
 set undofile
 set undodir=~/backup/vim/\_undodir
 set undolevels=1000 "maximum number of changes that can be undone
+"set history=100                               "保留1000次历史
 "}}}
-
-
-
 
 
