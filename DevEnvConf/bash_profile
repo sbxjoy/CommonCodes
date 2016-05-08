@@ -1,41 +1,53 @@
 #!/bin/bash
 function pcol { #{{{
-    awk -v col=$1 '{print $col}'
+awk -v col=$1 '{print $col}'
 } #}}}
 
 function msum { #{{{
-    awk -v col=$1 'BEGIN {sum = 0 }{ sum = sum + $col} END {print sum}'
+awk -v col=$1 'BEGIN {sum = 0 }{ sum = sum + $col} END {print sum}'
 } #}}}
 
 function vj { #{{{
-    if [ -e in.vim ]
-    then
-        vim -c "so in.vim"
-    else
-        vim
-    fi
+if [ -e in.vim ]
+then
+    vim -c "so in.vim"
+else
+    vim
+fi
 } #}}}
 
 function ta { #{{{
-    res=`tmux list-sessions`
-    if [ $? = 1 ]
-    then
-        tmux -2
-    fi
-    row=`echo "$res" | wc -l`
-    if [ $row = 1 ]
-    then
-        tmux -2 a
-    fi
-    if [ $1 ]
-    then
-        tmux -2 a -t $1
-    fi
-    echo "$res"
+res=`tmux list-sessions`
+if [ $? = 1 ]
+then
+    tmux -2
+fi
+row=`echo "$res" | wc -l`
+if [ $row = 1 ]
+then
+    tmux -2 a
+fi
+if [ $1 ]
+then
+    tmux -2 a -t $1
+fi
+echo "$res"
 } #}}}
 
+function mcd() { mkdir -p "$1"; cd "$1";}
+function cll() { cd "$1"; ll;}
+function bak() { cp "$1"{,.bak};}
+
+alias sserver='python -m SimpleHTTPServer'
+alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'"
+alias ps?="ps aux | grep"
+alias grep="grep --color=auto"
+alias c="clear"
 alias tmux="tmux -2"
 alias ack="ack-grep"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 if [[ $PATH != *$HOME/bin* ]]
 then
